@@ -16,28 +16,30 @@
       margin: var(--ddd-spacing-2);
     }
 
-    .blurb {
+  .blurb {
     display: flex;
     flex-direction: column; 
   }
-    h1{
+  h1{
     padding-left: var(--ddd-spacing-4);
   }
-    .mission-container {
-    display: flex;
-    gap: 64px; /* space between blocks */
-    flex-wrap: wrap; /* lets them move to next line on small screens */
-    
-  }
+  .mission-container {
+  display: flex;
+  gap: 64px; /* space between blocks */
+  flex-wrap: wrap; /* lets them move to next line on small screens */
+}
 
   </style>
   <title>About Page</title>
 </head>
 
 <body>
+  <div class="nav-bar">
+    <p>navbar</p>
+  </div>
   <div id="about-page">
     <div class="about-blurb">
-      <p>placer</p>
+      <p>about blurb</p>
     </div>
     <div class="blurb">
       <h1>Mission</h1>
@@ -95,8 +97,8 @@
       </div>
     </div>
     <div class="footer">
+      <p>footer</p>
     </div>
-  
   </div>
 
   <script type="module" src="./about-mission-statement.js"></script>
