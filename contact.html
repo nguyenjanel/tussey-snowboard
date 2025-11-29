@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Description" content="Contact page for tussey-snowboard" />
+
+    <title>Contact</title>
+  </head>
+  <body>
+    <style>
+      body {
+        display: block;
+      }
+      .contact-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+      }
+
+      @media (max-width: 1024px) {
+        .contact-container {
+          flex-direction: column;
+          flex-wrap: nowrap;
+          text-align: center;
+        }
+      }
+    </style>
+    <div class="contact-container">
+      <contact-info></contact-info>
+      <message-box></message-box>
+    </div>
+    <script type="module" src="./contact-info.js"></script>
+    <script type="module" src="./message-box.js"></script>
+  </body>
+</html>
