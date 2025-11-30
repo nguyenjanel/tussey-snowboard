@@ -12,27 +12,30 @@ export class ContactInfo extends DDDSuper(I18NMixin(LitElement)) {
       super.styles,
       css`
         .contact-info {
-          flex: 1 1 30%;
-          background: var(--ddd-accent-1-light, #f9f9f9);
-          padding: 0 2rem;
+          background: var(--ddd-theme-primary);
           border-radius: var(--ddd-borderRadius);
-          box-shadow: var(--ddd-boxShadow, 0 1px 25px rgba(0, 0, 0, 0.2));
-          height: stretch;
+          border: var(--ddd-border);
+          box-shadow: var(--ddd-boxShadow);
+          color: var(--ddd-theme-default-text);
+          padding: 0 2rem;
         }
+
         @media (max-width: 1024px) {
           .contact-info {
             width: 80%;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 auto;
+            text-align: center;
           }
 
           .contact-item {
-            width: 50%;
+            width: stretch;
             margin: 0 auto;
             padding: 0 auto;
             text-align: left;
           }
         }
+
         .contact-info h2 {
           padding-block: 1.5rem;
           margin-top: 0;
@@ -41,8 +44,17 @@ export class ContactInfo extends DDDSuper(I18NMixin(LitElement)) {
         .contact-item {
           display: flex;
           align-items: flex-start;
-          gap: 1rem;
+          gap: 1.5rem;
           padding-bottom: 2.5rem;
+        }
+
+        .contact-item iconify-icon {
+          border-radius: 100%;
+          background: var(--ddd-accent-1-light);
+          padding: 0.3rem;
+          border: var(--ddd-border);
+          box-shadow: var(--ddd-boxShadow);
+          color: var(--ddd-accent-1-dark);
         }
 
         p {
@@ -62,8 +74,8 @@ export class ContactInfo extends DDDSuper(I18NMixin(LitElement)) {
         <div class="contact-item">
           <iconify-icon
             icon="ph:map-pin-area-bold"
-            width="28"
-            height="28"
+            width="26"
+            height="26"
           ></iconify-icon>
           <p>
             <strong>Address:</strong><br />301 Bear Meadows Road

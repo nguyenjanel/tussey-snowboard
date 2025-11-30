@@ -2,16 +2,16 @@ import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
-export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
+export class JobApplication extends DDDSuper(I18NMixin(LitElement)) {
   static get tag() {
-    return "message-box";
+    return "job-application";
   }
 
   static get styles() {
     return [
       super.styles,
       css`
-        .message-box {
+        .lost-found {
           background: var(--ddd-theme-primary);
           padding: 1.5rem;
           border-radius: var(--ddd-borderRadius);
@@ -20,7 +20,7 @@ export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
           color: var(--ddd-theme-default-text);
         }
 
-        .message-box h3 {
+        .lost-found h3 {
           margin-top: 0;
           margin-bottom: 1.5rem;
           font-weight: 500;
@@ -34,7 +34,7 @@ export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
         }
 
         @media (max-width: 1024px) {
-          .message-box {
+          .lost-found {
             width: 80%;
             margin: 0 auto;
             padding: 2rem;
@@ -94,8 +94,8 @@ export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
 
   render() {
     return html`
-      <main class="message-box">
-        <h3>Get in touch with Tussey Mountain.</h3>
+      <main class="lost-found">
+        <h3>Lost and Found</h3>
         <form @submit="${this._submitForm}">
           <div class="message-input">
             <label for="first-name">First Name*</label>
@@ -131,7 +131,7 @@ export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
           </div>
 
           <div class="message-input">
-            <label for="email">Address*</label>
+            <label for="email">Email*</label>
             <input
               class="form-field"
               type="email"
@@ -140,13 +140,33 @@ export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
               required
             />
           </div>
+          <div class="message-input">
+            <label for="birthday">Birthday*</label>
+            <input
+              class="form-field"
+              type="date"
+              id="birthday"
+              name="birthday"
+              required
+            />
+          </div>
+          <div class="message-input">
+            <label for="address">Address*</label>
+            <input
+              class="form-field"
+              type="text"
+              id="address"
+              name="address"
+              required
+            />
+          </div>
 
           <div class="message-area">
-            <label for="message">Message</label>
+            <label for="message">List Any Relevant Skills</label>
             <textarea
               class="form-field"
-              id="message"
-              name="message"
+              id="skills"
+              name="skills"
               rows="5"
               cols="36"
             ></textarea>
@@ -167,4 +187,4 @@ export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
   }
 }
 
-globalThis.customElements.define(MessageBox.tag, MessageBox);
+globalThis.customElements.define(JobApplication.tag, JobApplication);

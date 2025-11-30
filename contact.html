@@ -13,34 +13,9 @@
         display: block;
         background: var(--ddd-accent-1-light);
       }
-      .contact-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
-      }
-
-      @media (max-width: 1024px) {
-        .contact-container {
-          flex-direction: column;
-          flex-wrap: nowrap;
-          text-align: center;
-        }
-      }
     </style>
-    <div class="contact-container">
-      <contact-menu></contact-menu>
-      <!-- <contact-info></contact-info> -->
-      <message-box></message-box>
-    </div>
-    <script type="module" src="./contact-menu.js"></script>
-    <script type="module" src="./contact-info.js"></script>
-    <script type="module" src="./message-box.js"></script>
-    <script>
-      this.addEventListener("menu-selected", (e) => {
-        this.activeSection = e.detail.section;
-      });
-    </script>
+    <contact-main></contact-main>
+    <script type="module" src="./contact-main.js"></script>
     <link rel="stylesheet" href="./theme.css" />
   </body>
 </html>

@@ -29,7 +29,9 @@ export class ContactMenu extends DDDSuper(I18NMixin(LitElement)) {
           border-radius: var(--ddd-borderRadius);
           border: var(--ddd-border);
           box-shadow: var(--ddd-boxShadow);
-          height: stretch;
+          position: sticky;
+          top: 0;
+          padding-bottom: 2rem;
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
@@ -155,8 +157,8 @@ export class ContactMenu extends DDDSuper(I18NMixin(LitElement)) {
           </div>
 
           <div
-            class="menu-item ${this.active === "get-in-touch" ? "active" : ""}"
-            @click="${() => this._select("get-in-touch")}"
+            class="menu-item ${this.active === "message-box" ? "active" : ""}"
+            @click="${() => this._select("message-box")}"
           >
             Get in Touch
           </div>
@@ -178,8 +180,8 @@ export class ContactMenu extends DDDSuper(I18NMixin(LitElement)) {
           </div>
 
           <div
-            class="menu-item ${this.active === "faqs" ? "active" : ""}"
-            @click="${() => this._select("faqs")}"
+            class="menu-item ${this.active === "faq-list" ? "active" : ""}"
+            @click="${() => this._select("faq-list")}"
           >
             FAQs
           </div>
