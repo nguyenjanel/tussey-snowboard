@@ -15,8 +15,9 @@ export class ContactInfo extends DDDSuper(I18NMixin(LitElement)) {
           flex: 1 1 30%;
           background: var(--ddd-accent-1-light, #f9f9f9);
           padding: 0 2rem;
-          border-radius: 16px;
-          box-shadow: var(--ddd-boxShadow);
+          border-radius: var(--ddd-borderRadius);
+          box-shadow: var(--ddd-boxShadow, 0 1px 25px rgba(0, 0, 0, 0.2));
+          height: stretch;
         }
         @media (max-width: 1024px) {
           .contact-info {

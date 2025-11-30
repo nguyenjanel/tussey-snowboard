@@ -11,6 +11,7 @@
     <style>
       body {
         display: block;
+        background: var(--ddd-accent-1-light);
       }
       .contact-container {
         display: flex;
@@ -28,10 +29,18 @@
       }
     </style>
     <div class="contact-container">
-      <contact-info></contact-info>
+      <contact-menu></contact-menu>
+      <!-- <contact-info></contact-info> -->
       <message-box></message-box>
     </div>
+    <script type="module" src="./contact-menu.js"></script>
     <script type="module" src="./contact-info.js"></script>
     <script type="module" src="./message-box.js"></script>
+    <script>
+      this.addEventListener("menu-selected", (e) => {
+        this.activeSection = e.detail.section;
+      });
+    </script>
+    <link rel="stylesheet" href="./theme.css" />
   </body>
 </html>

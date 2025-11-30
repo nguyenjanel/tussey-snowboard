@@ -13,10 +13,12 @@ export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
       css`
         .message-box {
           flex: 1 1 60%;
-          background: var(--ddd-accent-1-light, #fafafa);
+          background: var(--ddd-theme-primary);
           padding: 1.5rem;
-          border-radius: 16px;
+          border-radius: var(--ddd-borderRadius);
+          border: var(--ddd-border);
           box-shadow: var(--ddd-boxShadow);
+          color: var(--ddd-theme-default-text);
         }
 
         .message-box h3 {
@@ -46,6 +48,11 @@ export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
             flex-direction: column;
           }
         }
+
+        /* label{
+          color: var(--ddd-theme-default-text-subtle);
+        } */
+          
         .message-input {
           display: flex;
           flex-direction: column;
@@ -54,8 +61,10 @@ export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
 
         .form-field {
           padding: 0.8rem 1rem;
-          border: 1.5px solid var(--ddd-borderColor, #ccc);
-          border-radius: 8px;
+          border: var(--ddd-border);
+          border-radius: var(--ddd-borderRadius);
+          box-shadow: var(--ddd-boxShadow);
+          background-color: var(--ddd-accent-1-light);
           font-size: 1rem;
         }
 
@@ -70,8 +79,8 @@ export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
           border-radius: 12px;
           border: none;
           padding: 0.8rem;
-          background: var(--ddd-theme-primary, #333);
-          color: white;
+          background: var(--ddd-accent-1-dark);
+          color: var(--ddd-theme-default-text);
           cursor: pointer;
           font-weight: 600;
           grid-column: span 2;
