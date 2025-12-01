@@ -48,6 +48,11 @@ export class TusseySnowboard extends DDDSuper(I18NMixin(LitElement)) {
     return [super.styles,
     css`
       :host {
+      --background-color: var(--ddd-theme-background, #fff);
+      --primary-color: var(--ddd-theme-primary,#4f93e1);
+      --font-fanmily: var(--ddd-font-navigation, Arial, sans-serif);
+      --font-color: var(--ddd-theme-primary, #000);
+
         display: block;
         color: var(--ddd-theme-primary);
         background-color: var(--ddd-theme-accent);
