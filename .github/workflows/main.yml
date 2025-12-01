@@ -12,10 +12,10 @@ jobs:
 
       - name: set env variable actor
         run: echo 'GITHUB_ACTOR=$GITHUB_ACTOR' >> $GITHUB_ENV
-        
+
       - name: set env variable repo
         run: echo 'GITHUB_REPOSITORY=$GITHUB_REPOSITORY' >> $GITHUB_ENV
-        
+
       - name: Checkout 🛎️
         uses: actions/checkout@v4.1.7 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
         with:
@@ -28,7 +28,9 @@ jobs:
           path: ./CNAME
       - name: set env variable CNAME
         run: echo 'CNAME=${{ steps.cname.outputs.content }}' >> $GITHUB_ENV
-        
+      - name: Read CNAME if exists
+        run: if [ -f CNAME ]; then cat CNAME; else echo "No CNAME file found, skipping" fi
+
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: |
           npm install
