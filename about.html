@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="Description" content="Demonstration for about">
+
+  <style>
+    :root, html, body {
+      margin: var(--ddd-spacing-0);
+      padding: var(--ddd-spacing-0);
+    }
+    #about-page {
+      margin: 0px;
+    }
+
+  .blurb {
+    display: flex;
+    flex-direction: column; 
+  }
+  h1{
+    padding-left: var(--ddd-spacing-4);
+  }
+  .mission-container {
+  display: flex;
+  gap: 64px; /* space between blocks */
+  flex-wrap: wrap; /* lets them move to next line on small screens */
+}
+
+  </style>
+  <title>About Page</title>
+</head>
+
+<body>
+  <div class="nav-bar">
+    <p>navbar</p>
+  </div>
+  <div id="about-page">
+    <div class="about-blurb">
+      <p>about blurb</p>
+    </div>
+    <div class="blurb">
+      <h1>Mission</h1>
+      <div class="mission-container">
+      <about-mission-statement
+        title="Promote"
+        description="We champion young leaders, empowering them to step into their potential and make a real impact in the community.">
+      </about-mission-statement>
+      <about-mission-statement
+        title="Develop"
+        description="We cultivate skills, resilience, and creativity, helping individuals grow into confident and capable leaders.">
+      </about-mission-statement>
+      <about-mission-statement
+        title="Lead"
+        description="We inspire others through example, guiding with integrity, vision, and a commitment to excellence.">
+      </about-mission-statement>
+      </div>
+    </div>
+    <div class="blurb">
+      <h1>Board of Directors</h1>
+      <div class="profile-container">
+        <about-profile
+          name="John Doe"
+          photo="">
+        </about-profile>
+        <about-profile
+          name="John Doe"
+          photo="">
+        </about-profile>
+        <about-profile
+          name="John Doe"
+          photo="">
+        </about-profile>
+        <about-profile
+          name="John Doe"
+          photo="">
+        </about-profile>
+      </div>
+    </div>
+    <div class="blurb">
+      <h1>Coaches</h1>
+      <div class="profile-container">
+        <about-profile
+          name="John Doe"
+          photo="">
+        </about-profile>
+        <about-profile
+          name="John Doe"
+          photo="">
+        </about-profile>
+        <about-profile
+          name="John Doe"
+          photo="">
+        </about-profile>
+      </div>
+    </div>
+    <div class="footer">
+      <p>footer</p>
+      <footer-tag></footer-tag>
+    </div>
+  </div>
+
+  <script type="module" src="./about-mission-statement.js"></script>
+  <script type="module" src="./about-profile.js"></script>
+  <script type="module" src="./footer-tag.js"></script>
+ 
+</body>
+</html>
