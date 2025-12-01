@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sponsors Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #222;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header img {
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+      object-fit: cover;
+    }
+
+    .sponsors-section {
+      padding: 30px;
+      text-align: center;
+    }
+
+    .sponsors-logos img {
+      margin: 10px;
+      width: 150px;
+      height: auto;
+    }
+
+    .donate-section {
+      margin-top: 40px;
+      text-align: center;
+      padding: 30px;
+      background-color: #fff;
+      border-top: 2px solid #ddd;
+    }
+
+    .donate-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .donate-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+  <h1>Tussey Snowboard Club</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <img src="https://via.placeholder.com/1200x300?text=Snowboarding+Sponsors" alt="Snowboarding Sponsors Banner" />
+</header>
+
+<section id="sponsors" style="padding: 40px; text-align: center;">
+  <h2>Our Sponsors</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; padding: 20px;">
+    <img src="https://via.placeholder.com/200x100?text=Sponsor+1" alt="Sponsor 1 Logo" style="background:#fff; padding:10px; border-radius:8px;" />
+    <img src="https://via.placeholder.com/200x100?text=Sponsor+2" alt="Sponsor 2 Logo" style="background:#fff; padding:10px; border-radius:8px;" />
+    <img src="https://via.placeholder.com/200x100?text=Sponsor+3" alt="Sponsor 3 Logo" style="background:#fff; padding:10px; border-radius:8px;" />
+    <img src="https://via.placeholder.com/200x100?text=Sponsor+4" alt="Sponsor 4 Logo" style="background:#fff; padding:10px; border-radius:8px;" />
+  </div>
+</section>
+
+<section id="donate" style="padding: 40px; text-align: center; background:#e8f6ff;">
+  <h2>Support Our Team</h2>
+  <p>Your donations help our snowboarding team train, travel, and compete at the highest level!</p>
+  <button style="padding: 15px 30px; font-size: 18px; border: none; border-radius: 8px; cursor: pointer; background:#0077cc; color:#fff;">Donate</button>
+</section>
+
+
+  <section class="sponsors-section">
+    <h2>Our Proud Sponsors</h2>
+    <div class="sponsors-logos">
+      <img src="sponsor1.png" alt="Sponsor 1" />
+      <img src="sponsor2.png" alt="Sponsor 2" />
+      <img src="sponsor3.png" alt="Sponsor 3" />
+    </div>
+  </section>
+
+ 
+
+  <script>
+    function donate() {
+      alert('Thank you for your interest in donating! Redirecting to payment page...');
+      
+      // window.location.href = "https://your-donation-link.com";
+    }
+  </script>
+</body>
+</html>
