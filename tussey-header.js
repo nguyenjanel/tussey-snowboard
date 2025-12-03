@@ -16,6 +16,11 @@ export class TusseyHeader extends LitElement {
     this.currentRoute = "/";
     this.navItems = [
       { label: "Home", path: "/" },
+      { label: "About", path: "/about" },
+      { label: "Team1", path: "/team1" },
+      { label: "Team2", path: "/team2" },
+      { label: "Team3", path: "/team3" },
+      { label: "Team4", path: "/team4" },
       { label: "Contact", path: "/contact" },
     ];
   }
