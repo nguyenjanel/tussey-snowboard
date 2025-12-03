@@ -6,7 +6,7 @@ import "./contact-info.js";
 import "./message-box.js";
 import "./lost-found.js";
 import "./job-application.js";
-import "./faq-list.js";
+
 
 export class ContactMain extends DDDSuper(I18NMixin(LitElement)) {
   static get tag() {
