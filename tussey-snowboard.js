@@ -8,82 +8,90 @@ import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
 /**
  * `tussey-snowboard`
- * 
+ *
  * @demo index.html
  * @element tussey-snowboard
  */
-export class TusseySnowboard extends DDDSuper(I18NMixin(LitElement)) {
+// import header and page components
+import "./tussey-header.js";
+import "./home-slope-type.js";
+import "./contact-main.js";
 
+export class TusseySnowboard extends DDDSuper(I18NMixin(LitElement)) {
   static get tag() {
     return "tussey-snowboard";
   }
 
-  constructor() {
-    super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
-    this.registerLocalization({
-      context: this,
-      localesPath:
-        new URL("./locales/tussey-snowboard.ar.json", import.meta.url).href +
-        "/../",
-      locales: ["ar", "es", "hi", "zh"],
-    });
-  }
-
-  // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
       title: { type: String },
+      currentRoute: { type: String }
     };
   }
 
-  // Lit scoped styles
-  static get styles() {
-    return [super.styles,
-    css`
-      :host {
-      --background-color: var(--ddd-theme-background, #fff);
-      --primary-color: var(--ddd-theme-primary,#4f93e1);
-      --font-fanmily: var(--ddd-font-navigation, Arial, sans-serif);
-      --font-color: var(--ddd-theme-primary, #000);
+  constructor() {
+    super();
+    this.title = "Tussey Mountain";
+    this.currentRoute = window.location.pathname;
 
-        display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
-      }
-      .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
-      }
-      h3 span {
-        font-size: var(--tussey-snowboard-label-font-size, var(--ddd-font-size-s));
-      }
-    `];
+    // back/forward button support
+    window.addEventListener("popstate", () => {
+      this.currentRoute = window.location.pathname;
+    });
   }
 
-  // Lit render the HTML
+  static get styles() {
+    return [
+      super.styles,
+      css`
+        :host {
+          display: block;
+          background: var(--ddd-theme-accent-light);
+          min-height: 100vh;
+          color: var(--ddd-theme-primary);
+        }
+
+        .page-wrapper {
+          padding: 2rem;
+        }
+      `,
+    ];
+  }
+
+  navigate(path) {
+    window.history.pushState({}, "", path);
+    this.currentRoute = path;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.addEventListener("nav-route-changed", (e) => {
+      this.navigate(e.detail.path);
+    });
+  }
+
+  renderRoute() {
+    switch (this.currentRoute) {
+      case "/":
+        return html`<home-slope-type></home-slope-type>`;
+      case "/contact":
+        return html`<contact-main></contact-main>`;
+      default:
+        return html`<h2>404 - Page Not Found</h2>`;
+    }
+  }
+
   render() {
     return html`
-<div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
-  <slot></slot>
-</div>`;
-  }
+      <tussey-header .currentRoute=${this.currentRoute}></tussey-header>
 
-  /**
-   * haxProperties integration via file reference
-   */
-  static get haxProperties() {
-    return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
-      .href;
+      <div class="page-wrapper">
+        ${this.renderRoute()}
+      </div>
+    `;
   }
 }
 
-globalThis.customElements.define(TusseySnowboard.tag, TusseySnowboard);
+customElements.define(TusseySnowboard.tag, TusseySnowboard);
