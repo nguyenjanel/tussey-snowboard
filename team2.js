@@ -61,7 +61,7 @@ export class team2 extends DDDSuper(I18NMixin(LitElement)) {
       <p>navigation bar placer</p>
     </div>
     <div>
-      <h1 id="team-name">Team #1</h1>
+      <h1 id="team-name">Team #2</h1>
     </div>
     <div>
       <h2>Upcoming Games</h2>

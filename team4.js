@@ -61,7 +61,7 @@ export class team4 extends DDDSuper(I18NMixin(LitElement)) {
       <p>navigation bar placer</p>
     </div>
     <div>
-      <h1 id="team-name">Team #1</h1>
+      <h1 id="team-name">Team #4</h1>
     </div>
     <div>
       <h2>Upcoming Games</h2>
@@ -85,7 +85,7 @@ export class team4 extends DDDSuper(I18NMixin(LitElement)) {
   const practicesScheduleEl = this.renderRoot.querySelector('#practices-schedule');
   const teamNameEl = this.renderRoot.querySelector('#team-name');
 
-  fetch('data.json')
+  fetch('/data.json')
     .then(res => res.json())
     .then(data => {
       const team = data.teams[3];
