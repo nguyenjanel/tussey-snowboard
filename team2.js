@@ -85,7 +85,7 @@ export class team2 extends DDDSuper(I18NMixin(LitElement)) {
   const practicesScheduleEl = this.renderRoot.querySelector('#practices-schedule');
   const teamNameEl = this.renderRoot.querySelector('#team-name');
 
-  fetch('data.json')
+  fetch('/data.json')
     .then(res => res.json())
     .then(data => {
       const team = data.teams[1];
