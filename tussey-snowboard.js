@@ -14,6 +14,7 @@ import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
  */
 // import header and page components
 import "./tussey-header.js";
+import "./tussey-home.js";
 import "./home-slope-type.js";
 import "./about-page.js";
 import "./team1.js"
@@ -80,7 +81,7 @@ export class TusseySnowboard extends DDDSuper(I18NMixin(LitElement)) {
   renderRoute() {
     switch (this.currentRoute) {
       case "/":
-        return html`<home-slope-type></home-slope-type>`;
+        return html`<tussey-home></tussey-home>`;
       case "/about":
         return html`<about-page></about-page>`;
       case "/team1":
