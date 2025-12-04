@@ -59,7 +59,7 @@ export class TusseySnowboard extends DDDSuper(I18NMixin(LitElement)) {
         }
 
         .page-wrapper {
-          padding: 2rem;
+          padding: 1rem;
         }
       `,
     ];

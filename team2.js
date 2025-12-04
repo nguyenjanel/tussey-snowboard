@@ -49,6 +49,12 @@ export class team2 extends DDDSuper(I18NMixin(LitElement)) {
           #team2-page h2 {
           padding-left: 12px;
         }
+        h1,h2{
+          color: var(--ddd-theme-default-text);
+        }
+        .footer{
+          padding-top: 10px;
+        }
       `
     ];
   }
@@ -57,9 +63,6 @@ export class team2 extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
       <div id="team2-page">
-    <div class="nav-bar">
-      <p>navigation bar placer</p>
-    </div>
     <div>
       <h1 id="team-name">Team #2</h1>
     </div>
@@ -85,17 +88,21 @@ export class team2 extends DDDSuper(I18NMixin(LitElement)) {
   const practicesScheduleEl = this.renderRoot.querySelector('#practices-schedule');
   const teamNameEl = this.renderRoot.querySelector('#team-name');
 
-  fetch('/data.json')
+  fetch('/dataPractice.json')
     .then(res => res.json())
     .then(data => {
       const team = data.teams[1];
-
+      
       // Update heading
       teamNameEl.textContent = team.teamName;
 
-      // Pass schedule separately
-      gamesScheduleEl.scheduleData = [team];
-      practicesScheduleEl.scheduleData = [team];
+      // Pass games schedule
+      gamesScheduleEl.scheduleData = team.schedule;      // array of game objects
+      gamesScheduleEl.scheduleType = "games";            // optional, for render logic
+
+      // Pass practice schedule
+      practicesScheduleEl.scheduleData = team.practice;  // array of practice objects
+      practicesScheduleEl.scheduleType = "practice";    // optional, for render logic
     })
     .catch(err => console.error("Failed to load schedule:", err));
 }

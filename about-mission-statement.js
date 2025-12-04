@@ -39,21 +39,24 @@ export class aboutMissionStatement extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: inline-block; /* <- important so blocks sit next to each other */
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
+        color: var(--ddd-theme-default-text);
+        background-color: var( --ddd-theme-primary);
         font-family: var(--ddd-font-navigation);
-        border-radius: var(--ddd-radius-lg, 16px); 
+        border-radius: var(--ddd-borderRadius); 
 
         padding: var(--ddd-spacing-4);
         margin: var(--ddd-spacing-2);
 
-        box-shadow: var(--ddd-shadow-2, 0 2px 6px rgba(0,0,0,0.15)); /* optional but looks good */
+        box-shadow: var( --ddd-boxShadow); /* optional but looks good */
         width: 250px; 
         vertical-align: top; /* ensures top-alignment if heights differ */
       }
 
       .wrapper {
-        margin: 0; /* no need for extra margin now */
+        margin: 0; /* no need for extra margin now */  
+      }
+      p{
+        color: var( --ddd-theme-default-text-subtle);
       }
       
     `];

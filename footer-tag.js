@@ -38,14 +38,14 @@ export class footerTag extends DDDSuper(I18NMixin(LitElement)) {
         display: block;
         width: 100%;
         height: 300px;
-        color: var(--ddd-theme-primary);
+        color: var(--ddd-theme-default-text);
         font-family: var(--ddd-font-navigation);
       }
 
       .wrapper {
         padding-top: 25px;
         padding:20px;
-        background-color:lightblue;
+        background-color: var( --ddd-theme-primary);
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
@@ -80,17 +80,8 @@ export class footerTag extends DDDSuper(I18NMixin(LitElement)) {
       .left-column p,
       .right-column p {
         margin: 6px 0;
-      }
-      /* Optional: copyright styling */
-      .copyright {
-        background-color: lightgrey;
-        text-align: center;
-        height: 40px;
-        margin:0px;
-      }
-      .copyright p{
-        margin:0px;
-      }
+        color: var(--ddd-theme-default-text-subtle);
+      }  
     `];
   }
 
@@ -124,9 +115,6 @@ export class footerTag extends DDDSuper(I18NMixin(LitElement)) {
             <p>Terms of Service</p>
           </div>
         </div>
-      </div>
-      <div class="copyright">
-        <p>copyright 2025</p>
       </div>
       `;
   }

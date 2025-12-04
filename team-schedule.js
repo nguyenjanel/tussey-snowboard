@@ -21,12 +21,14 @@ export class teamSchedule extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.scheduleData = []; // initialize empty
+    this.scheduleType = "games"; // optional default
   }
   // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
       scheduleData: { type: Array },
+      scheduleType: { type: String }, // "games" or "practice"
     };
   }
 
@@ -37,13 +39,13 @@ export class teamSchedule extends DDDSuper(I18NMixin(LitElement)) {
       css`
         :host {
           display: block;
-          color: var(--ddd-theme-primary, #333);
-          background-color: var(--ddd-theme-accent, #f9f9f9);
+          color: var(--ddd-theme-default-text);
 
           font-family: var(--ddd-font-navigation);
-          border-radius: var(--ddd-radius-lg, 16px);
-
+          border-radius: var(--ddd-borderRadius);
+          box-shadow: var(--ddd-boxShadow);
           padding: var(--ddd-spacing-4);
+          border: var(--ddd-border);
           margin: var(--ddd-spacing-2);
 
           overflow-x: auto; /* horizontal scroll on small screens */
@@ -56,14 +58,14 @@ export class teamSchedule extends DDDSuper(I18NMixin(LitElement)) {
 
         table.schedule-table th,
         table.schedule-table td {
-          border: 1px solid #ddd;
+          border: var(--ddd-border);
           padding: 12px 16px;
           text-align: left;
         }
 
         table.schedule-table th {
-          background-color: var(--ddd-theme-primary, #59b5f6);
-          color: white;
+          background-color: var(--ddd-theme-secondary);
+          color: var(--ddd-theme-default-text-subtle);
         }
 
         table.schedule-table tr:nth-child(even) {
@@ -71,46 +73,42 @@ export class teamSchedule extends DDDSuper(I18NMixin(LitElement)) {
         }
 
         table.schedule-table tr:hover {
-          background-color: #e0dede;
+          background-color: #d4d2d2;
         }
       `
     ];
   }
 
-  render() {
-    return html`
-      <div class="wrapper">
-        ${this.scheduleData.map(team => html`
-          <table class="schedule-table">
-            <thead>
+render() {
+  return html`
+    <div class="wrapper">
+      ${this.scheduleData?.length > 0 ? html`
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Location</th>
+              <th>${this.scheduleType === "games" ? "Opponent" : "Notes"}</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${this.scheduleData.map(item => html`
               <tr>
-                <th>Date</th>
-                <th>Team</th>
-                <th>Opponent</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Ice Rink</th>
+                <td>${item.date}</td>
+                <td>${item.time}</td>
+                <td>${item.endTime || ""}</td>
+                <td>${item.location}</td>
+                <td>${item.opponent || item.notes || ""}</td>
               </tr>
-            </thead>
-            <tbody>
-              ${team.schedule.map(game => html`
-                <tr>
-                  <td>${game.date}</td>
-                  <td>${team.teamName}</td>
-                  <td>${game.opponent}</td>
-                  <td>${game.time}</td>
-                  <td>${game.endTime || ""}</td>
-                  <td>${game.location}</td>
-                </tr>
-              `)}
-            </tbody>
-          </table>
-        `)}
-      </div>
-    `;
-  }
-
-  
+            `)}
+          </tbody>
+        </table>
+      ` : html`<p>No schedule available.</p>`}
+    </div>
+  `;
+}
 
   /**
    * haxProperties integration via file reference
