@@ -21,14 +21,14 @@ export class aboutProfile extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.name = "Your Name";         // will display under the photo
-    this.photoLink = "https://as1.ftcdn.net/jpg/03/46/83/96/220_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"; // default photo
+    this.photo = "https://as1.ftcdn.net/jpg/03/46/83/96/220_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"; // default photo
   }
   // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
       name: { type: String },
-      photo: { type: String },
+      photoLink: { type: String },
     };
   }
 
@@ -38,30 +38,29 @@ export class aboutProfile extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: inline-block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
+        color: var(--ddd-theme-default-text);
+        background-color: var(--ddd-theme-primary);
         font-family: var(--ddd-font-navigation);
-        border-radius: var(--ddd-radius-lg, 16px);
+        border-radius: var(--ddd-border);
         padding: var(--ddd-spacing-4);
         margin: var(--ddd-spacing-2);
-        box-shadow: var(--ddd-shadow-2, 0 2px 6px rgba(0,0,0,0.15));
+        box-shadow: var(--ddd-boxShadow);
         width: 200px; 
         text-align: center; 
         vertical-align: top;
       }
-
       .profile-img {
         width: 200px;
         height: 200px;
         border-radius: 50%; /* makes it circular */
         object-fit: cover;
-        margin: 0 auto 12px auto; /* center and space from name */
         display: block;
         border: 2px solid var(--ddd-theme-primary); /* optional border */
       }
       h2 {
         margin: 8px 0 0 0;
         font-size: 1.2rem;
+        color: var(--ddd-theme-default-text-subtle);
       }
       p {
         font-size: 0.9rem;
@@ -73,7 +72,7 @@ export class aboutProfile extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
       <div class="wrapper">
-        <img class="profile-img" src="${this.photoLink}" alt="${this.name}">
+        <img class="profile-img" src="${this.photo}" alt="${this.name}">
         <h2>${this.name}</h2>
       </div>
     `;

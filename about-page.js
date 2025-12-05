@@ -41,31 +41,33 @@ export class aboutPage extends DDDSuper(I18NMixin(LitElement)) {
         padding: var(--ddd-spacing-0);
       }
       #about-page {
-      margin: 0px;
+        margin: 0px;
       }
-
       .blurb {
         display: flex;
         flex-direction: column; 
       }
       h1{
         padding-left: var(--ddd-spacing-4);
+        color: var(--ddd-theme-default-text);
       }
       .mission-container {
-      display: flex;
-      gap: 64px; /* space between blocks */
-      flex-wrap: wrap; /* lets them move to next line on small screens */
+        display: flex;
+        gap: 64px; /* space between blocks */
+        flex-wrap: wrap; /* lets them move to next line on small screens */
+    }
+    .about-blurb{
+      height: 200px; 
+      background-color: lightblue;
+      color: black;
     }
     `];
   }
 
   render() {
     return html`
-      <div class="nav-bar">
-        <p>navbar</p>
-      </div>
       <div id="about-page">
-        <div class="about-blurb">
+        <div class="about-blurb" >
           <p>about blurb</p>
         </div>
         <div class="blurb">
@@ -89,19 +91,19 @@ export class aboutPage extends DDDSuper(I18NMixin(LitElement)) {
           <h1>Board of Directors</h1>
           <div class="profile-container">
             <about-profile
-              name="John Doe"
+              name="John Smith"
               photo="">
             </about-profile>
             <about-profile
-              name="John Doe"
+              name="Sandy Miller"
               photo="">
             </about-profile>
             <about-profile
-              name="John Doe"
+              name="Brian Goodman"
               photo="">
             </about-profile>
             <about-profile
-              name="John Doe"
+              name="Amy White"
               photo="">
             </about-profile>
           </div>
@@ -110,7 +112,7 @@ export class aboutPage extends DDDSuper(I18NMixin(LitElement)) {
           <h1>Coaches</h1>
           <div class="profile-container">
             <about-profile
-              name="John Doe"
+              name="Rebecca Shall"
               photo="">
             </about-profile>
             <about-profile
@@ -118,13 +120,12 @@ export class aboutPage extends DDDSuper(I18NMixin(LitElement)) {
               photo="">
             </about-profile>
             <about-profile
-              name="John Doe"
+              name="Jane Mary"
               photo="">
             </about-profile>
           </div>
         </div>
         <div class="footer">
-          <p>footer</p>
           <footer-tag></footer-tag>
         </div>
       </div>

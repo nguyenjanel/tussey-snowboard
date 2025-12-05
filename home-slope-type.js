@@ -42,8 +42,8 @@ export class homeSlopeType extends DDDSuper(I18NMixin(LitElement)) {
       }
       .card {
         position: relative;
-        color: black;
-        background-color: #b8eef5;
+        color: var(--ddd-theme-default-text-subtle);
+        background-color:var(--ddd-theme-primary);
         border-radius: 16px;
         padding: 16px;
         width: 250px;

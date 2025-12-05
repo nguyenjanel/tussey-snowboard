@@ -1,0 +1,25 @@
+:root {
+  --wendy-font-color: #323232;
+  --wendy-font-color-sub: #666;
+  --wendy-bg-color-light: #f5f4dc;
+  --wendy-bg-color-dark: black;
+
+  --wendy-primary-color: #add9e5;
+  --janel-secondary-color: #bde4ef;
+
+  --wendy-border-radius: 5px;
+  --wendy-border-style: 2px solid var(--wendy-bg-color-dark);
+  --wendy-box-shadow-style: 4px 4px var(--wendy-bg-color-dark);
+
+  --ddd-theme-primary: var(--wendy-primary-color);
+  --ddd-theme-secondary:var(--janel-secondary-color);
+  --ddd-theme-default-text: var(--wendy-font-color);
+  --ddd-theme-default-text-subtle: var(--wendy-font-color-sub);
+
+  --ddd-accent-1-light: var(--wendy-bg-color-light);
+  --ddd-accent-1-dark: var(--wendy-bg-color-dark);
+
+  --ddd-borderRadius: var(--wendy-border-radius);
+  --ddd-border: var(--wendy-border-style);
+  --ddd-boxShadow: var(--wendy-box-shadow-style);
+}
