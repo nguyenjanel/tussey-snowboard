@@ -96,15 +96,16 @@ firstUpdated() {
 
       console.log("data[0]:", data[0]);
       console.log("data[0].teams:", data[0].teams);
-      
-      const gamesScheduleEl = this.renderRoot.querySelector('#games-schedule');
-      const practicesScheduleEl = this.renderRoot.querySelector('#practices-schedule');
-      const teamNameEl = this.renderRoot.querySelector('#team-name');
 
       teamNameEl.textContent = team.teamName;
 
-      gamesScheduleEl.scheduleData = [team];
-      practicesScheduleEl.scheduleData = [team];
+      // Pass games schedule
+      gamesScheduleEl.scheduleData = team.schedule;      // array of game objects
+      gamesScheduleEl.scheduleType = "games";            // optional, for render logic
+
+      // Pass practice schedule
+      practicesScheduleEl.scheduleData = team.practice;  // array of practice objects
+      practicesScheduleEl.scheduleType = "practice";    // optional, for render logic
     })
     .catch(err => console.error("Failed to load schedule:", err));
 }
