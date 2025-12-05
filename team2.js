@@ -84,28 +84,31 @@ export class team2 extends DDDSuper(I18NMixin(LitElement)) {
   }
 
   firstUpdated() {
-  const gamesScheduleEl = this.renderRoot.querySelector('#games-schedule');
-  const practicesScheduleEl = this.renderRoot.querySelector('#practices-schedule');
-  const teamNameEl = this.renderRoot.querySelector('#team-name');
+    const gamesScheduleEl = this.renderRoot.querySelector('#games-schedule');
+    const practicesScheduleEl = this.renderRoot.querySelector('#practices-schedule');
+    const teamNameEl = this.renderRoot.querySelector('#team-name');
 
-  fetch('/dataPractice.json')
-    .then(res => res.json())
-    .then(data => {
-      const team = data.teams[1];
-      
-      // Update heading
-      teamNameEl.textContent = team.teamName;
+    fetch('/api/schedule')
+      .then(res => res.json())
+      .then(data => {
+        const team = data[0].teams[1]; // because your API returns an array with one object
+        console.log("RAW DATA FROM API:", data);
 
-      // Pass games schedule
-      gamesScheduleEl.scheduleData = team.schedule;      // array of game objects
-      gamesScheduleEl.scheduleType = "games";            // optional, for render logic
+        console.log("data[0]:", data[0]);
+        console.log("data[0].teams:", data[0].teams);
 
-      // Pass practice schedule
-      practicesScheduleEl.scheduleData = team.practice;  // array of practice objects
-      practicesScheduleEl.scheduleType = "practice";    // optional, for render logic
-    })
-    .catch(err => console.error("Failed to load schedule:", err));
-}
+        teamNameEl.textContent = team.teamName;
+
+        // Pass games schedule
+        gamesScheduleEl.scheduleData = team.schedule;      // array of game objects
+        gamesScheduleEl.scheduleType = "games";            // optional, for render logic
+
+        // Pass practice schedule
+        practicesScheduleEl.scheduleData = team.practice;  // array of practice objects
+        practicesScheduleEl.scheduleType = "practice";    // optional, for render logic
+      })
+      .catch(err => console.error("Failed to load schedule:", err));
+  }
 
   /**
    * haxProperties integration via file reference
