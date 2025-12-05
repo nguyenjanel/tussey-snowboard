@@ -88,21 +88,19 @@ firstUpdated() {
   const practicesScheduleEl = this.renderRoot.querySelector('#practices-schedule');
   const teamNameEl = this.renderRoot.querySelector('#team-name');
 
-  fetch('/dataPractice.json')
+  fetch('/api/schedule')
     .then(res => res.json())
     .then(data => {
-      const team = data.teams[0];
-      
-      // Update heading
+      const team = data[0].teams[0]; // because your API returns an array with one object
+
+      const gamesScheduleEl = this.renderRoot.querySelector('#games-schedule');
+      const practicesScheduleEl = this.renderRoot.querySelector('#practices-schedule');
+      const teamNameEl = this.renderRoot.querySelector('#team-name');
+
       teamNameEl.textContent = team.teamName;
 
-      // Pass games schedule
-      gamesScheduleEl.scheduleData = team.schedule;      // array of game objects
-      gamesScheduleEl.scheduleType = "games";            // optional, for render logic
-
-      // Pass practice schedule
-      practicesScheduleEl.scheduleData = team.practice;  // array of practice objects
-      practicesScheduleEl.scheduleType = "practice";    // optional, for render logic
+      gamesScheduleEl.scheduleData = [team];
+      practicesScheduleEl.scheduleData = [team];
     })
     .catch(err => console.error("Failed to load schedule:", err));
 }
