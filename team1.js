@@ -85,15 +85,17 @@ export class team1 extends DDDSuper(I18NMixin(LitElement)) {
   const practicesScheduleEl = this.renderRoot.querySelector('#practices-schedule');
   const teamNameEl = this.renderRoot.querySelector('#team-name');
 
-  fetch('data.json')
+  fetch('/api/schedule')
     .then(res => res.json())
     .then(data => {
-      const team = data.teams[0];
+      const team = data[0].teams[0]; // because your API returns an array with one object
 
-      // Update heading
+      const gamesScheduleEl = this.renderRoot.querySelector('#games-schedule');
+      const practicesScheduleEl = this.renderRoot.querySelector('#practices-schedule');
+      const teamNameEl = this.renderRoot.querySelector('#team-name');
+
       teamNameEl.textContent = team.teamName;
 
-      // Pass schedule separately
       gamesScheduleEl.scheduleData = [team];
       practicesScheduleEl.scheduleData = [team];
     })
