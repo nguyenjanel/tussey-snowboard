@@ -7,6 +7,7 @@ import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
 import "./home-slope-type.js";
+import "./tussey-hero.js";
 import "./footer-tag.js"
 
 /**
@@ -51,6 +52,11 @@ export class tusseyHome extends DDDSuper(I18NMixin(LitElement)) {
         display: flex;
         justify-content: center; /* horizontal alignment */
         gap: 5%;
+        flex-wrap: wrap;
+      }
+      tussey-hero {
+        display: block;
+        width: 100%;
       }
       
     `];
@@ -60,9 +66,7 @@ export class tusseyHome extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
       <div class="wrapper">
-        <div class="placer">
-          <p>Placer for the display of tussey league</p>
-        </div>
+        <tussey-hero> </tussey-hero>
         <div class="placer">
           <p>join team buttons</p>
         </div>
