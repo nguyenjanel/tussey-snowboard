@@ -88,12 +88,15 @@ firstUpdated() {
   const practicesScheduleEl = this.renderRoot.querySelector('#practices-schedule');
   const teamNameEl = this.renderRoot.querySelector('#team-name');
 
-  fetch('/dataPractice.json')
+  fetch('/api/schedule')
     .then(res => res.json())
     .then(data => {
-      const team = data.teams[0];
-      
-      // Update heading
+      const team = data[0].teams[0]; // because your API returns an array with one object
+      console.log("RAW DATA FROM API:", data);
+
+      console.log("data[0]:", data[0]);
+      console.log("data[0].teams:", data[0].teams);
+
       teamNameEl.textContent = team.teamName;
 
       // Pass games schedule
