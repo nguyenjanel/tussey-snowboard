@@ -10,6 +10,7 @@ export class TusseyHeader extends LitElement {
       currentRoute: { type: String },
       menuOpen: { type: Boolean },
       teamOpen: { type: Boolean },
+      darkMode: { type: Boolean },
     };
   }
 
@@ -18,182 +19,183 @@ export class TusseyHeader extends LitElement {
     this.currentRoute = "/";
     this.menuOpen = false;
     this.teamOpen = false;
-
+    this.darkMode = false;
 
     this.navItems = [
       { label: "Home", path: "/" },
       { label: "About", path: "/about" },
-      { label: "Team", path: "/team" }, 
+      { label: "Team", path: "/team" },
       { label: "Contact", path: "/contact" },
     ];
 
     this.teamItems = [
-      { label: "Team 1", path: "/team1" },
-      { label: "Team 2", path: "/team2" },
-      { label: "Team 3", path: "/team3" },
-      { label: "Team 4", path: "/team4" },
+      { label: "Avalanche Riders", path: "/team1" },
+      { label: "Frostbite Flyers", path: "/team2" },
+      { label: "Snow Serpents", path: "/team3" },
+      { label: "Ice Breakers", path: "/team4" },
     ];
   }
-
   static get styles() {
     return css`
       :host {
         display: block;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
       }
 
-      .header-wrapper {
+      /* HEADER CONTAINER (Rounded capsule like Brainfish) */
+      header {
+        background: var(--ddd-theme-primary); /* primary Wendy blue */
+        color: var(--ddd-theme-default-text);
+        padding: 0.6rem 1.2rem;
+        margin: 0.7rem auto;
+        max-width: 95%;
+        border-radius: 40px;
+        box-shadow: var(--ddd-boxShadow);
+        border: var(--ddd-border);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.75rem 1.5rem;
-        background: var(--ddd-theme-primary);
-        color: var(--ddd-accent-1-light);
       }
 
+      /* LOGO */
       .logo {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         font-weight: 700;
-        letter-spacing: 0.03em;
+        color: var(--ddd-theme-default-text);
       }
 
-      .nav-bar {
+      /* NAVIGATION */
+      nav {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
+        gap: 2rem;
+        color: var(--ddd-theme-default-text);
       }
 
-      .nav-link,
-      .dropdown-toggle,
-      .submenu-link {
-        color: var(--ddd-accent-1-light);
+      .nav-link {
+        font-size: 1.1rem;
+        padding: 0.4rem 1rem;
+        border-radius: var(--ddd-borderRadius);
         text-decoration: none;
-        font-size: 1rem;
         cursor: pointer;
-        position: relative;
-        border: none;
-        background: transparent;
-        padding: 0;
-        font: inherit;
+        color: var(--ddd-theme-default-text);
+        transition: background 0.2s ease;
       }
 
-      .nav-link.active::after,
-      .dropdown-toggle.active::after {
-        content: "";
-        position: absolute;
-        bottom: -4px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: var(--ddd-accent-1-dark);
-        border-radius: 3px;
+      .nav-link:hover {
+        background: var(--ddd-accent-1-light);
       }
 
-  
+      /* ACTIVE TAB — “Pill” style */
+      .nav-link.active {
+        background: var(--ddd-accent-1-light);
+        border: var(--ddd-border);
+        box-shadow: var(--ddd-boxShadow);
+      }
+
+      /* DROPDOWN WRAPPER */
       .dropdown {
         position: relative;
       }
 
+      /* FLOATING DROPDOWN PANEL */
       .dropdown-menu {
         position: absolute;
-        top: calc(100% + 0.5rem);
+        top: 2.6rem;
         left: 0;
-        min-width: 150px;
-        background: var(--ddd-accent-1-light);
-        color: var(--ddd-theme-primary);
-        border-radius: 0.5rem;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-        padding: 0.5rem 0;
-        display: none;
-        z-index: 20;
+
+        background: var(--ddd-theme-primary);
+        border: var(--ddd-border);
+        box-shadow: var(--ddd-boxShadow);
+        border-radius: var(--ddd-borderRadius);
+
+        padding: 1rem;
+        min-width: 220px;
+
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+        visibility: hidden;
+        transition: opacity 0.25s ease, transform 0.25s ease,
+          visibility 0.25s ease;
       }
 
       .dropdown-menu.open {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .submenu-link {
+        font-size: 1rem;
         display: block;
-      }
-
-      .dropdown-item {
-        padding: 0.4rem 1rem;
-      }
-
-      .dropdown-item .submenu-link {
-        color: #111827;
-        font-size: 0.95rem;
-      }
-
-      .dropdown-item .submenu-link:hover {
-        color: var(--ddd-theme-primary);
-      }
-
-      .dropdown-toggle-icon {
-        margin-left: 0.25rem;
-        font-size: 0.8rem;
-      }
-
-      /* HAMBURGER (mobile only) */
-      .hamburger {
-        display: none;
-        width: 24px;
-        height: 24px;
-        flex-direction: column;
-        justify-content: space-between;
+        padding: 0.4rem 0;
         cursor: pointer;
+        color: var(--ddd-theme-default-text);
+        text-decoration: none;
       }
 
-      .hamburger span {
-        display: block;
-        height: 3px;
+      .submenu-link:hover {
+        color: var(--ddd-theme-default-text-subtle);
+      }
+
+      /* TOGGLE SWITCH (Light/Dark Mode) */
+      .toggle {
+        width: 55px;
+        height: 28px;
+
         background: var(--ddd-accent-1-light);
-        border-radius: 2px;
-        transition: transform 0.2s ease, opacity 0.2s ease;
-      }
+        border-radius: 30px;
+        border: var(--ddd-border);
 
-      /* MOBILE NAV */
-      .mobile-nav {
-        display: none;
-        flex-direction: column;
-        gap: 0.75rem;
-        padding: 0.75rem 1.5rem 1.25rem;
-        background: var(--ddd-theme-primary);
-      }
-
-      .mobile-nav.open {
         display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        padding: 3px;
+        cursor: pointer;
+        transition: background 0.25s ease;
       }
 
-      .mobile-nav .dropdown-menu {
-        position: static;
-        background: transparent;
-        box-shadow: none;
-        padding: 0.25rem 0 0 1rem;
+      :host([darkmode]) .toggle {
+        background: var(--ddd-accent-1-dark);
       }
 
-      .mobile-nav .dropdown-item {
-        padding: 0.25rem 0;
+      .toggle-ball {
+        width: 22px;
+        height: 22px;
+        background: var(--ddd-accent-1-dark);
+        border-radius: 50%;
+        transition: transform 0.25s ease;
       }
 
-      .mobile-nav .submenu-link {
-        color: var(--ddd-accent-1-light);
-        font-size: 0.95rem;
+      :host([darkmode]) .toggle-ball {
+        transform: translateX(27px);
+        background: var(--wendy-bg-color-light);
       }
 
-      /* RESPONSIVE BREAKPOINTS */
+      /* DARK MODE EFFECT */
+      :host([darkmode]) header {
+        background: var(--wendy-bg-color-dark);
+        color: var(--wendy-bg-color-light);
+      }
+
+      :host([darkmode]) .nav-link {
+        color: var(--wendy-bg-color-light);
+      }
+
+      :host([darkmode]) .dropdown-menu {
+        background: var(--wendy-bg-color-dark);
+        color: var(--wendy-bg-color-light);
+      }
+
+      /* RESPONSIVE BEHAVIOR */
       @media (max-width: 768px) {
-        .nav-bar {
+        nav {
           display: none;
-        }
-
-        .hamburger {
-          display: flex;
-        }
-      }
-
-      @media (min-width: 769px) {
-        .mobile-nav {
-          display: none !important;
-        }
-
-        .dropdown:hover .dropdown-menu {
-          display: block;
         }
       }
     `;
@@ -201,161 +203,84 @@ export class TusseyHeader extends LitElement {
 
   handleClick(e, path) {
     e.preventDefault();
-
     this.dispatchEvent(
       new CustomEvent("nav-route-changed", {
         detail: { path },
         bubbles: true,
         composed: true,
-      }),
+      })
     );
-
-    // Close mobile menu after navigation
-    this.menuOpen = false;
     this.teamOpen = false;
   }
 
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
-    if (!this.menuOpen) {
-      this.teamOpen = false;
-    }
-  }
-
-  toggleTeam(e) {
-    // prevent the click from triggering parent nav
-    e.preventDefault();
-    e.stopPropagation();
+  toggleTeam() {
     this.teamOpen = !this.teamOpen;
   }
 
-  renderDesktopNav() {
-    return html`
-      <nav class="nav-bar">
-        ${this.navItems.map((item) =>
-          item.label === "Team"
-            ? html`
-                <div class="dropdown">
-                  <button
-                    class="dropdown-toggle ${this.currentRoute.startsWith("/team")
-                      ? "active"
-                      : ""}"
-                    @click="${this.toggleTeam}"
-                  >
-                    Team
-                    <span class="dropdown-toggle-icon">▾</span>
-                  </button>
-                  <div class="dropdown-menu">
-                    ${this.teamItems.map(
-                      (team) => html`
-                        <div class="dropdown-item">
-                          <a
-                            href="${team.path}"
-                            class="submenu-link ${this.currentRoute === team.path
-                              ? "active"
-                              : ""}"
-                            @click="${(e) => this.handleClick(e, team.path)}"
-                          >
-                            ${team.label}
-                          </a>
-                        </div>
-                      `,
-                    )}
-                  </div>
-                </div>
-              `
-            : html`
-                <a
-                  href="${item.path}"
-                  class="nav-link ${this.currentRoute === item.path
-                    ? "active"
-                    : ""}"
-                  @click="${(e) => this.handleClick(e, item.path)}"
-                >
-                  ${item.label}
-                </a>
-              `,
-        )}
-      </nav>
-    `;
-  }
+  toggleMode() {
+    this.darkMode = !this.darkMode;
 
-  renderMobileNav() {
-    return html`
-      <nav class="mobile-nav ${this.menuOpen ? "open" : ""}">
-        ${this.navItems.map((item) =>
-          item.label === "Team"
-            ? html`
-                <div>
-                  <button
-                    class="dropdown-toggle ${this.currentRoute.startsWith("/team")
-                      ? "active"
-                      : ""}"
-                    @click="${this.toggleTeam}"
-                  >
-                    Team
-                    <span class="dropdown-toggle-icon">▾</span>
-                  </button>
-                  <div
-                    class="dropdown-menu ${this.teamOpen ? "open" : ""}"
-                  >
-                    ${this.teamItems.map(
-                      (team) => html`
-                        <div class="dropdown-item">
-                          <a
-                            href="${team.path}"
-                            class="submenu-link ${this.currentRoute === team.path
-                              ? "active"
-                              : ""}"
-                            @click="${(e) => this.handleClick(e, team.path)}"
-                          >
-                            ${team.label}
-                          </a>
-                        </div>
-                      `,
-                    )}
-                  </div>
-                </div>
-              `
-            : html`
-                <a
-                  href="${item.path}"
-                  class="nav-link ${this.currentRoute === item.path
-                    ? "active"
-                    : ""}"
-                  @click="${(e) => this.handleClick(e, item.path)}"
-                >
-                  ${item.label}
-                </a>
-              `,
-        )}
-      </nav>
-    `;
+    if (this.darkMode) {
+      this.setAttribute("darkmode", "");
+    } else {
+      this.removeAttribute("darkmode");
+    }
   }
 
   render() {
     return html`
-      <header class="header-wrapper">
-        <div class="logo">Tussey Mountain</div>
+      <header>
+        <div class="logo">TusseyMountain</div>
 
-        ${this.renderDesktopNav()}
+        <nav>
+          ${this.navItems.map((item) =>
+            item.label === "Team"
+              ? html`
+                  <div class="dropdown">
+                    <div
+                      class="nav-link ${this.currentRoute.startsWith("/team")
+                        ? "active"
+                        : ""}"
+                      @click="${this.toggleTeam}"
+                    >
+                      Team
+                    </div>
 
-        <div class="hamburger" @click="${this.toggleMenu}">
-          <span
-            style="${this.menuOpen
-              ? "transform: translateY(9px) rotate(45deg);"
-              : ""}"
-          ></span>
-          <span style="${this.menuOpen ? "opacity: 0;" : ""}"></span>
-          <span
-            style="${this.menuOpen
-              ? "transform: translateY(-9px) rotate(-45deg);"
-              : ""}"
-          ></span>
-        </div>
+                    <div class="dropdown-menu ${this.teamOpen ? "open" : ""}">
+                      ${this.teamItems.map(
+                        (team) => html`
+                          <div class="dropdown-item">
+                            <a
+                              class="submenu-link"
+                              href="${team.path}"
+                              @click="${(e) => this.handleClick(e, team.path)}"
+                            >
+                              ${team.label}
+                            </a>
+                          </div>
+                        `
+                      )}
+                    </div>
+                  </div>
+                `
+              : html`
+                  <a
+                    href="${item.path}"
+                    class="nav-link ${this.currentRoute === item.path
+                      ? "active"
+                      : ""}"
+                    @click="${(e) => this.handleClick(e, item.path)}"
+                    >${item.label}</a
+                  >
+                `
+          )}
+
+          <!-- Light/Dark Toggle -->
+          <div class="toggle" @click="${this.toggleMode}">
+            <div class="toggle-ball"></div>
+          </div>
+        </nav>
       </header>
-
-      ${this.renderMobileNav()}
     `;
   }
 }

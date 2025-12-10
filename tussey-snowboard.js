@@ -53,7 +53,7 @@ export class TusseySnowboard extends DDDSuper(I18NMixin(LitElement)) {
       css`
         :host {
           display: block;
-          background: var(--ddd-theme-accent-light);
+          background: var(--ddd-accent-1-light);
           min-height: 100vh;
           color: var(--ddd-theme-primary);
         }
