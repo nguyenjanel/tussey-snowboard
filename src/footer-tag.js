@@ -22,6 +22,11 @@ export class footerTag extends DDDSuper(I18NMixin(LitElement)) {
     super();
     
   }
+ 
+  _navigate(path) {
+  window.history.pushState({}, "", path);
+  window.dispatchEvent(new PopStateEvent("popstate"));
+  }
 
   // Lit reactive properties
   static get properties() {
@@ -31,59 +36,105 @@ export class footerTag extends DDDSuper(I18NMixin(LitElement)) {
   }
 
   // Lit scoped styles
-  static get styles() {
-    return [super.styles,
-    css`
-      :host {
-        display: block;
-        width: 100%;
-        height: 300px;
-        color: var(--ddd-theme-default-text);
-        font-family: var(--ddd-font-navigation);
-      }
+static get styles() {
+  return [super.styles,
+  css`
+    :host {
+      display: block;
+      width: 100%;
+      height: auto; /* let it grow on mobile */
+      color: var(--ddd-theme-default-text);
+      font-family: var(--ddd-font-navigation);
+    }
 
+    .wrapper {
+      padding: 20px;
+      background-color: var(--ddd-theme-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      box-sizing: border-box;
+      flex-wrap: wrap; /* allows elements to drop below each other */
+    }
+
+    /* RIGHT SIDE */
+    .right-side {
+      flex: 1;
+      min-width: 250px;
+      max-width: 45%;
+    }
+
+    .right-side img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .social-bar {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* LEFT SIDE */
+    .left-side {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr; 
+      min-width: 250px;
+      max-width: 45%;
+      gap: 10px;
+    }
+
+    .left-column p,
+    .right-column p {
+      margin: 6px 0;
+      color: var(--ddd-theme-default-text-subtle);
+    }
+
+    /* 📱 MOBILE BREAKPOINT */
+    @media (max-width: 768px) {
       .wrapper {
-        padding-top: 25px;
-        padding:20px;
-        background-color: var( --ddd-theme-primary);
-        display: flex;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: flex-start;
-        height: 100%;
-        width: 100%;
-        box-sizing: border-box;
+        height: auto;
       }
-
-      /* RIGHT SIDE */
-      .right-side {
-        flex: 1;
-        max-width: 40%;
-      }
-
-      .right-side img {
-        width: 30px;
-      }
-
-      .social-bar {
-        display: flex;
-        gap: 10px;
-      }
-
-      /* LEFT SIDE */
+      .right-side,
       .left-side {
-        flex: 1;
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* two columns */
-        max-width: 40%;
+        max-width: 100%;
+        width: 100%;
       }
+      .left-side {
+        grid-template-columns: 1fr; /* stack columns */
+      }
+      h2 {
+        font-size: 1.3rem;
+      }
+      p {
+        font-size: 0.95rem;
+      }
+      .social-bar img {
+        width: 22px;
+        height: 22px;
+      }
+    }
+          a {
+      color: var(--ddd-theme-default-text-subtle);
+      text-decoration: none;
+    }
 
-      .left-column p,
-      .right-column p {
-        margin: 6px 0;
-        color: var(--ddd-theme-default-text-subtle);
-      }  
-    `];
-  }
+    a:hover {
+      text-decoration: underline;
+    }
+    .clickable {
+      cursor: pointer;       /* shows the hand pointer */
+    }
+
+    .clickable:hover {
+      text-decoration: underline;
+      opacity: 0.8;          /* subtle fade on hover */
+    }
+  `];
+}
 
   // Lit render the HTML
   render() {
@@ -100,19 +151,17 @@ export class footerTag extends DDDSuper(I18NMixin(LitElement)) {
             </div>
         </div>
         <div class="left-side">
-          <div class ="left-column">
+          <div class="left-column">
             <p>Site Map</p>
-            <p>Homepage</p>
-            <p>About</p>
-            <p>Sponsors</p>
-            <p>Schedule</p>
-            <p>Teams</p>
-            <p>Contact</p>
+            <p class="clickable" @click="${() => this._navigate('/')}">Homepage</p>
+            <p class="clickable" @click="${() => this._navigate('/about')}">About</p>
+            <p class="clickable" @click="${() => this._navigate('/team1')}">Teams</p>
+            <p class="clickable" @click="${() => this._navigate('/contact')}">Contact</p>
           </div>
           <div class = "right-column">
             <p>Legal</p>
-            <p>Privacy Policy</p>
-            <p>Terms of Service</p>
+            <p class="clickable">Privacy Policy</p>
+            <p class="clickable">Terms of Service</p>
           </div>
         </div>
       </div>
