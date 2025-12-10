@@ -90,6 +90,13 @@ static get styles() {
       margin: 6px 0;
       color: var(--ddd-theme-default-text-subtle);
     }
+    .social-bar img {
+        width: 50px;
+        height: 50px;
+      }
+      .right-side p{
+        color:  var(--ddd-theme-default-text-subtle);
+      }
 
     /* 📱 MOBILE BREAKPOINT */
     @media (max-width: 768px) {
@@ -103,6 +110,7 @@ static get styles() {
         max-width: 100%;
         width: 100%;
       }
+
       .left-side {
         grid-template-columns: 1fr; /* stack columns */
       }
@@ -113,11 +121,11 @@ static get styles() {
         font-size: 0.95rem;
       }
       .social-bar img {
-        width: 22px;
-        height: 22px;
+        width: 30px;
+        height: 30px;
       }
     }
-          a {
+    a {
       color: var(--ddd-theme-default-text-subtle);
       text-decoration: none;
     }
@@ -142,12 +150,17 @@ static get styles() {
       <div class="wrapper">
         <div class ="right-side">
             <h2>Tussey Snowboard</h2>
-            <p>We empower apsiring young snowboarders with competitive match ranking...</p>
+            <p> We empower aspiring young snowboarders by providing a platform for competitive match rankings, skill development, and community engagement. </p>  
             <div class="social-bar">
-              <img src="https://img.freepik.com/premium-vector/square-linkedin-logo-isolated-white-background_469489-892.jpg">
-              <img src="https://img.freepik.com/premium-vector/square-linkedin-logo-isolated-white-background_469489-892.jpg">
-              <img src="https://img.freepik.com/premium-vector/square-linkedin-logo-isolated-white-background_469489-892.jpg">
-              <img src="https://img.freepik.com/premium-vector/square-linkedin-logo-isolated-white-background_469489-892.jpg">
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                <img src="https://static.vecteezy.com/system/resources/previews/018/930/480/non_2x/linkedin-logo-linkedin-icon-transparent-free-png.png" alt="LinkedIn">
+              </a>
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                <img src="https://static.vecteezy.com/system/resources/previews/018/930/698/non_2x/facebook-logo-facebook-icon-transparent-free-png.png" alt="Facebook">
+              </a>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                <img src="https://static.vecteezy.com/system/resources/previews/018/930/415/non_2x/instagram-logo-instagram-icon-transparent-free-png.png" alt="Instagram">
+              </a>
             </div>
         </div>
         <div class="left-side">
