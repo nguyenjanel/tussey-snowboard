@@ -1,3 +1,7 @@
+/**
+ * Copyright 2025 xiaowen Ju
+ */
+
 import { LitElement, html, css } from "lit";
 
 export class TusseyHeader extends LitElement {

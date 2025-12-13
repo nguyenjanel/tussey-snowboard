@@ -1,5 +1,6 @@
 /**
  * Copyright 2025 nguyenjanel
+ * Copyright 2025 Xiaowen Ju
  * @license Apache-2.0, see LICENSE for full text.
  */
 import { LitElement, html, css } from "lit";
@@ -13,6 +14,7 @@ import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
  * @element tussey-snowboard
  */
 // import header and page components
+import "./tussey-icon.js";
 import "./tussey-header.js";
 import "./tussey-home.js";
 import "./home-slope-type.js";
@@ -22,8 +24,9 @@ import "./team2.js";
 import "./team3.js";
 import "./team4.js";
 import "./contact-info.js";
+import "./message-box.js"
 import "./lost-found.js";
-import "./job-application.js"
+import "./job-application.js";
 
 export class TusseySnowboard extends LitElement {
   static get tag() {
@@ -88,12 +91,12 @@ export class TusseySnowboard extends LitElement {
         return html`<team-4></team-4>`;
       case "/contact-info":
         return html`<contact-info></contact-info>`;
+      case "/get-in-touch":
+        return html`<message-box></message-box>`;
       case "/lost-found":
         return html`<lost-found></lost-found>`;
       case "/job-application":
         return html`<job-application></job-application>`;
-      case "/faqs":
-        return html`<faq-list></faq-list>`;
       default:
         return html`<h2>404 – Page Not Found</h2>`;
     }

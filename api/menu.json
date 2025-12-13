@@ -101,8 +101,19 @@
       "slug": "/contact-info",
       "order": 0,
       "parent": "contact",
-      "title": "Contact",
+      "title": "Information",
       "description": "General contact information.",
+      "metadata": {}
+    },
+    {
+      "id": "faqs",
+      "indent": "2",
+      "location": "./src/message-box.js",
+      "slug": "/get-in-touch",
+      "order": 1,
+      "parent": "contact",
+      "title": "Get in Touch",
+      "description": "form to send message to tussey mountain",
       "metadata": {}
     },
     {
@@ -110,7 +121,7 @@
       "indent": "2",
       "location": "./src/lost-found.js",
       "slug": "/lost-found",
-      "order": 1,
+      "order": 2,
       "parent": "contact",
       "title": "Lost and Found",
       "description": "Report or retrieve lost items.",
@@ -121,21 +132,10 @@
       "indent": "2",
       "location": "./src/job-application.js",
       "slug": "/job-application",
-      "order": 2,
+      "order": 3,
       "parent": "contact",
       "title": "Job Application",
       "description": "Apply for open positions at Tussey Mountain.",
-      "metadata": {}
-    },
-    {
-      "id": "faqs",
-      "indent": "2",
-      "location": "./src/faq-list.js",
-      "slug": "/faqs",
-      "order": 3,
-      "parent": "contact",
-      "title": "FAQs",
-      "description": "Frequently asked questions.",
       "metadata": {}
     }
   ]
