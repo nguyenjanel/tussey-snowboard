@@ -10,12 +10,11 @@ import "./team-schedule.js";
 import "./footer-tag.js";
 /**
  * `team-schedule`
- * 
+ *
  * @demo index.html
  * @element team-4
  */
 export class team4 extends DDDSuper(I18NMixin(LitElement)) {
-
   static get tag() {
     return "team-4";
   }
@@ -34,81 +33,93 @@ export class team4 extends DDDSuper(I18NMixin(LitElement)) {
   // Lit reactive properties
 
   static get styles() {
-    return [super.styles,
+    return [
+      super.styles,
       css`
         :host {
           margin: var(--ddd-spacing-0);
           padding: var(--ddd-spacing-0);
         }
-        #team4-page{
+        #team4-page {
           margin: var(--ddd-spacing-2);
         }
-          #team4-page h1 {
+        #team4-page h1 {
           padding-left: 12px;
         }
-          #team4-page h2 {
+        #team4-page h2 {
           padding-left: 12px;
         }
-        h1,h2{
+        h1,
+        h2 {
           color: var(--ddd-theme-default-text);
         }
-        .footer{
+        .footer {
           padding-top: 10px;
         }
-      `
+      `,
     ];
   }
-  
 
   render() {
     return html`
       <div id="team4-page">
-    <div>
-      <h1 id="team-name">Team #4</h1>
-    </div>
-    <div>
-      <h2>Upcoming Games</h2>
-      <team-schedule id="games-schedule"></team-schedule>
-    </div>
-    <div>
-      <h2>Upcoming Practices</h2>
-      <team-schedule id="practices-schedule"></team-schedule>
-    </div>
-  
-    <div class="footer">
-      <footer-tag></footer-tag>
-    </div>
-  </div>
+        <div>
+          <h1 id="team-name">Team #4</h1>
+        </div>
+        <div>
+          <h2>Upcoming Games</h2>
+          <team-schedule id="games-schedule"></team-schedule>
+        </div>
+        <div>
+          <h2>Upcoming Practices</h2>
+          <team-schedule id="practices-schedule"></team-schedule>
+        </div>
 
+        <div class="footer">
+          <footer-tag></footer-tag>
+        </div>
+      </div>
     `;
   }
 
-firstUpdated() {
-  const gamesScheduleEl = this.renderRoot.querySelector('#games-schedule');
-  const practicesScheduleEl = this.renderRoot.querySelector('#practices-schedule');
-  const teamNameEl = this.renderRoot.querySelector('#team-name');
+  firstUpdated() {
+    const gamesScheduleEl = this.renderRoot.querySelector("#games-schedule");
+    const practicesScheduleEl = this.renderRoot.querySelector(
+      "#practices-schedule"
+    );
+    const teamNameEl = this.renderRoot.querySelector("#team-name");
 
-  fetch('/api/schedule')
-    .then(res => res.json())
-    .then(data => {
-      const team = data[0].teams[3]; // because your API returns an array with one object
-      console.log("RAW DATA FROM API:", data);
+    fetch("/api/schedule.json")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log("RAW DATA:", data);
 
-      console.log("data[0]:", data[0]);
-      console.log("data[0].teams:", data[0].teams);
+        const league = data[0];
+        const team = league.teams.find((t) => t.id === "team-4");
 
-      teamNameEl.textContent = team.teamName;
+        if (!team) {
+          throw new Error("team-4 not found");
+        }
 
-      // Pass games schedule
-      gamesScheduleEl.scheduleData = team.schedule;      // array of game objects
-      gamesScheduleEl.scheduleType = "games";            // optional, for render logic
+        console.log("TEAM 4:", team);
 
-      // Pass practice schedule
-      practicesScheduleEl.scheduleData = team.practice;  // array of practice objects
-      practicesScheduleEl.scheduleType = "practice";    // optional, for render logic
-    })
-    .catch(err => console.error("Failed to load schedule:", err));
-}
+        teamNameEl.textContent = team.teamName;
+
+        gamesScheduleEl.scheduleData = team.schedule;
+        gamesScheduleEl.scheduleType = "games";
+
+        practicesScheduleEl.scheduleData = team.practice;
+        practicesScheduleEl.scheduleType = "practice";
+      })
+      .catch((err) => {
+        console.error("Failed to load schedule:", err);
+      });
+  }
 
   /**
    * haxProperties integration via file reference
