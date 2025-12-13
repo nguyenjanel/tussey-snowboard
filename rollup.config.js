@@ -17,6 +17,13 @@ export default {
   preserveEntrySignatures: false,
 
   plugins: [
+    copy({
+    targets: [
+      { src: "public/menu/menu.json", dest: "dist/menu" } // copies JSON into dist
+    ],
+    copyOnce: true,
+    verbose: true,
+  }),
     /** Enable using HTML as rollup entrypoint */
     html({
       minify: true,
