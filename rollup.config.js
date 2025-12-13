@@ -46,9 +46,6 @@ export default {
               minifyCSS: true,
             },
           },
-          copy({
-            targets: [{ src: "public/**/*", dest: "dist" }],
-          }),
         ],
       ],
     }),
