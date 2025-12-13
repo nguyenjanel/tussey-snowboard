@@ -92,19 +92,19 @@ export class aboutPage extends DDDSuper(I18NMixin(LitElement)) {
           <div class="profile-container">
             <about-profile
               name="John Smith"
-              photo="">
+              photo="https://static.vecteezy.com/system/resources/previews/055/277/083/non_2x/professional-man-portrait-illustration-for-business-and-design-projects-free-vector.jpg">
             </about-profile>
             <about-profile
               name="Sandy Miller"
-              photo="">
+              photo="https://static.vecteezy.com/system/resources/thumbnails/000/241/161/small/girl-with-wavy-hair-and-glasses-vector.jpg">
             </about-profile>
             <about-profile
               name="Brian Goodman"
-              photo="">
+              photo="https://static.vecteezy.com/system/resources/thumbnails/000/142/008/small/stylish-man-s-headshot-vector.jpg">
             </about-profile>
             <about-profile
               name="Amy White"
-              photo="">
+              photo="https://static.vecteezy.com/system/resources/thumbnails/000/241/163/small/girl-with-wavy-hair-and-glasses-vector.jpg">
             </about-profile>
           </div>
         </div>
@@ -113,15 +113,15 @@ export class aboutPage extends DDDSuper(I18NMixin(LitElement)) {
           <div class="profile-container">
             <about-profile
               name="Rebecca Shall"
-              photo="">
+              photo="https://static.vecteezy.com/system/resources/thumbnails/000/242/373/small/girl-with-wavy-hair-and-glasses-vector.jpg">
             </about-profile>
             <about-profile
-              name="John Doe"
-              photo="">
+              name="John Box"
+              photo="https://static.vecteezy.com/system/resources/thumbnails/000/225/335/small/old-man-pop-art-vector.jpg">
             </about-profile>
             <about-profile
               name="Jane Mary"
-              photo="">
+              photo="https://static.vecteezy.com/system/resources/thumbnails/000/242/794/small/girl-with-wavy-hair-and-glasses.jpg">
             </about-profile>
           </div>
         </div>

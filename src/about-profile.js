@@ -28,7 +28,7 @@ export class aboutProfile extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       name: { type: String },
-      photoLink: { type: String },
+      photo: { type: String },
     };
   }
 

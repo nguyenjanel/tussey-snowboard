@@ -21,6 +21,7 @@ export class homeSlopeType extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.number = "1";
+    this.slope = "slope";
     this.description = "description";
   }
 
@@ -29,6 +30,7 @@ export class homeSlopeType extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       number: { type: String },
+      slope: { type: String },
       description: { type: String },
     };
   }
@@ -65,6 +67,24 @@ export class homeSlopeType extends DDDSuper(I18NMixin(LitElement)) {
       h1{
         font-size: 80px;
       }
+      .wrapper .description {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var( --ddd-accent-1-light);
+      color: #333;
+      opacity: 0;
+      padding-left: 10px;
+    }
+
+    .wrapper:hover .description {
+      opacity: 1;
+    }
     `];
   }
 
@@ -74,7 +94,10 @@ export class homeSlopeType extends DDDSuper(I18NMixin(LitElement)) {
       <div class="card">
       <div class="wrapper">
         <h1>${this.number}</h1>
-        <p>${this.description}</p>
+        <p>${this.slope}</p>
+        <div class="description">
+          <p>${this.description}</p>
+        </div>
       </div>
     </div>`;
   }

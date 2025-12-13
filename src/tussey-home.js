@@ -51,8 +51,12 @@ export class tusseyHome extends DDDSuper(I18NMixin(LitElement)) {
       .slopes{
         display: flex;
         justify-content: center; /* horizontal alignment */
-        gap: 5%;
+        gap: 10%;
         flex-wrap: wrap;
+      }
+      home-slope-type{
+        margin-top: 5%;
+        margin-bottom: 5%;
       }
       tussey-hero {
         display: block;
@@ -77,15 +81,18 @@ export class tusseyHome extends DDDSuper(I18NMixin(LitElement)) {
         <div class="slopes">
           <home-slope-type
             number = "2"
-            description = "Black Diamonds">
+            slope = "Black Diamond"
+            description = "Black slopes are for experts only.">
           </home-slope-type>
           <home-slope-type
             number = "4"
-            description = "Blue">
+            slope = "Blue Squares"
+            description = "To successfully ski a blue slope, you’ll need to be comfortable making turns and want to handle slightly steeper sections.">
           </home-slope-type>
           <home-slope-type
             number = "3"
-            description = "Green">
+            slope = "Green Circles"
+            description = "Green slopes generally have gentle gradients and minimal obstacles. Most are specifically designated for beginners.">
           </home-slope-type>
         </div>
         <div class="placer">
