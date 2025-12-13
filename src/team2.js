@@ -89,7 +89,7 @@ export class team2 extends DDDSuper(I18NMixin(LitElement)) {
     );
     const teamNameEl = this.renderRoot.querySelector("#team-name");
 
-    fetch("/api/schedule.json")
+    fetch("/api/schedule")
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error ${res.status}`);
