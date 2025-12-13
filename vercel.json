@@ -1,6 +1,5 @@
 {
   "rewrites": [
-    { "source": "/menu.json", "destination": "/menu.json" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

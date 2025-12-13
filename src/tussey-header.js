@@ -38,7 +38,7 @@ export class TusseyHeader extends LitElement {
   async loadMenu() {
     try {
       console.log("loadMenu() called — about to fetch JSON");
-      const res = await fetch("/menu.json");
+      const res = await fetch("/menu/menu.json");
       const data = await res.json();
 
       console.log("Fetch completed:", res);
