@@ -1,0 +1,142 @@
+{
+  "id": "tussey-Mountain",
+  "title": "Tussey Mountain Website",
+  "author": "Xiaowen / Janel",
+  "description": "Navigation structure for the Tussey Mountain experience.",
+  "license": "by-sa",
+  "metadata": {},
+  "items": [
+    {
+      "id": "home",
+      "indent": "1",
+      "location": "./src/tussey-home.js",
+      "slug": "/",
+      "order": 0,
+      "parent": null,
+      "title": "Home",
+      "description": "Landing page for Tussey Mountain.",
+      "metadata": {}
+    },
+    {
+      "id": "about",
+      "indent": "1",
+      "location": "./src/about-page.js",
+      "slug": "/about",
+      "order": 1,
+      "parent": null,
+      "title": "About",
+      "description": "About Tussey Mountain.",
+      "metadata": {}
+    },
+    {
+      "id": "team",
+      "indent": "1",
+      "location": null,
+      "slug": "/team",
+      "order": 2,
+      "parent": null,
+      "title": "Team",
+      "description": "Meet the teams at Tussey Mountain.",
+      "metadata": { "dropdown": true }
+    },
+    {
+      "id": "team-1",
+      "indent": "2",
+      "location": "./src/team1.js",
+      "slug": "/team1",
+      "order": 0,
+      "parent": "team",
+      "title": "Team 1",
+      "description": "Avalanche Riders team page.",
+      "metadata": {}
+    },
+    {
+      "id": "team-2",
+      "indent": "2",
+      "location": "./src/team2.js",
+      "slug": "/team2",
+      "order": 1,
+      "parent": "team",
+      "title": "Team 2",
+      "description": "Frostbite Flyers team page.",
+      "metadata": {}
+    },
+    {
+      "id": "team-3",
+      "indent": "2",
+      "location": "./src/team3.js",
+      "slug": "/team3",
+      "order": 2,
+      "parent": "team",
+      "title": "Team 3",
+      "description": "Snow Serpents team page.",
+      "metadata": {}
+    },
+    {
+      "id": "team-4",
+      "indent": "2",
+      "location": "./src/team4.js",
+      "slug": "/team4",
+      "order": 3,
+      "parent": "team",
+      "title": "Team 4",
+      "description": "Ice Breakers team page.",
+      "metadata": {}
+    },
+    {
+      "id": "contact",
+      "indent": "1",
+      "location": null,
+      "slug": "/contact",
+      "order": 3,
+      "parent": null,
+      "title": "Contact",
+      "description": "Contact and support-related pages.",
+      "metadata": { "dropdown": true }
+    },
+    {
+      "id": "contact-info",
+      "indent": "2",
+      "location": "./src/contact-info.js",
+      "slug": "/contact-info",
+      "order": 0,
+      "parent": "contact",
+      "title": "Contact",
+      "description": "General contact information.",
+      "metadata": {}
+    },
+    {
+      "id": "lost-found",
+      "indent": "2",
+      "location": "./src/lost-found.js",
+      "slug": "/lost-found",
+      "order": 1,
+      "parent": "contact",
+      "title": "Lost and Found",
+      "description": "Report or retrieve lost items.",
+      "metadata": {}
+    },
+    {
+      "id": "job-application",
+      "indent": "2",
+      "location": "./src/job-application.js",
+      "slug": "/job-application",
+      "order": 2,
+      "parent": "contact",
+      "title": "Job Application",
+      "description": "Apply for open positions at Tussey Mountain.",
+      "metadata": {}
+    },
+    {
+      "id": "faqs",
+      "indent": "2",
+      "location": "./src/faq-list.js",
+      "slug": "/faqs",
+      "order": 3,
+      "parent": "contact",
+      "title": "FAQs",
+      "description": "Frequently asked questions.",
+      "metadata": {}
+    }
+  ]
+}

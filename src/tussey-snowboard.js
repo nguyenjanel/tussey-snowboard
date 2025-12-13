@@ -17,22 +17,23 @@ import "./tussey-header.js";
 import "./tussey-home.js";
 import "./home-slope-type.js";
 import "./about-page.js";
-import "./team1.js"
-import "./team2.js"
-import "./team3.js"
-import "./team4.js"
-import "./contact-main.js";
+import "./team1.js";
+import "./team2.js";
+import "./team3.js";
+import "./team4.js";
+import "./contact-info.js";
+import "./lost-found.js";
+import "./job-application.js"
 
-export class TusseySnowboard extends DDDSuper(I18NMixin(LitElement)) {
+export class TusseySnowboard extends LitElement {
   static get tag() {
     return "tussey-snowboard";
   }
 
   static get properties() {
     return {
-      ...super.properties,
       title: { type: String },
-      currentRoute: { type: String }
+      currentRoute: { type: String },
     };
   }
 
@@ -41,28 +42,22 @@ export class TusseySnowboard extends DDDSuper(I18NMixin(LitElement)) {
     this.title = "Tussey Mountain";
     this.currentRoute = window.location.pathname;
 
-    // back/forward button support
     window.addEventListener("popstate", () => {
       this.currentRoute = window.location.pathname;
     });
   }
 
   static get styles() {
-    return [
-      super.styles,
-      css`
-        :host {
-          display: block;
-          background: var(--ddd-accent-1-light);
-          min-height: 100vh;
-          color: var(--ddd-theme-primary);
-        }
+    return css`
+      :host {
+        display: block;
+        min-height: 100vh;
+      }
 
-        .page-wrapper {
-          padding: 1rem;
-        }
-      `,
-    ];
+      .page-wrapper {
+        padding: 1rem;
+      }
+    `;
   }
 
   navigate(path) {
@@ -72,7 +67,6 @@ export class TusseySnowboard extends DDDSuper(I18NMixin(LitElement)) {
 
   connectedCallback() {
     super.connectedCallback();
-
     this.addEventListener("nav-route-changed", (e) => {
       this.navigate(e.detail.path);
     });
@@ -92,10 +86,16 @@ export class TusseySnowboard extends DDDSuper(I18NMixin(LitElement)) {
         return html`<team-3></team-3>`;
       case "/team4":
         return html`<team-4></team-4>`;
-      case "/contact":
-        return html`<contact-main></contact-main>`;
+      case "/contact-info":
+        return html`<contact-info></contact-info>`;
+      case "/lost-found":
+        return html`<lost-found></lost-found>`;
+      case "/job-application":
+        return html`<job-application></job-application>`;
+      case "/faqs":
+        return html`<faq-list></faq-list>`;
       default:
-        return html`<h2>404 - Page Not Found</h2>`;
+        return html`<h2>404 – Page Not Found</h2>`;
     }
   }
 
@@ -103,9 +103,7 @@ export class TusseySnowboard extends DDDSuper(I18NMixin(LitElement)) {
     return html`
       <tussey-header .currentRoute=${this.currentRoute}></tussey-header>
 
-      <div class="page-wrapper">
-        ${this.renderRoute()}
-      </div>
+      <div class="page-wrapper">${this.renderRoute()}</div>
     `;
   }
 }

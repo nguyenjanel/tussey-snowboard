@@ -10,7 +10,9 @@ export class TusseyHeader extends LitElement {
       currentRoute: { type: String },
       menuOpen: { type: Boolean },
       teamOpen: { type: Boolean },
+      contactOpen: { type: Boolean },
       darkMode: { type: Boolean },
+      menu: { type: Array },
     };
   }
 
@@ -19,186 +21,42 @@ export class TusseyHeader extends LitElement {
     this.currentRoute = "/";
     this.menuOpen = false;
     this.teamOpen = false;
+    this.contactOpen = false;
     this.darkMode = false;
-
-    this.navItems = [
-      { label: "Home", path: "/" },
-      { label: "About", path: "/about" },
-      { label: "Team", path: "/team" },
-      { label: "Contact", path: "/contact" },
-    ];
-
-    this.teamItems = [
-      { label: "Avalanche Riders", path: "/team1" },
-      { label: "Frostbite Flyers", path: "/team2" },
-      { label: "Snow Serpents", path: "/team3" },
-      { label: "Ice Breakers", path: "/team4" },
-    ];
+    this.menu = [];
   }
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-      }
 
-      /* HEADER CONTAINER (Rounded capsule like Brainfish) */
-      header {
-        background: var(--ddd-theme-primary); /* primary Wendy blue */
-        color: var(--ddd-theme-default-text);
-        padding: 0.6rem 1.2rem;
-        margin: 0.7rem auto;
-        max-width: 95%;
-        border-radius: 40px;
-        box-shadow: var(--ddd-boxShadow);
-        border: var(--ddd-border);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+  connectedCallback() {
+    super.connectedCallback();
+    this.loadMenu();
+  }
 
-      /* LOGO */
-      .logo {
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: var(--ddd-theme-default-text);
-      }
+  async loadMenu() {
+    try {
+      const res = await fetch("/api/menu.json");
+      const data = await res.json();
+      this.menu = data.items;
+    } catch (e) {
+      console.error("Menu load failed", e);
+    }
+  }
 
-      /* NAVIGATION */
-      nav {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        color: var(--ddd-theme-default-text);
-      }
+  get topLevelItems() {
+    return this.menu
+      .filter((i) => i.indent === "1")
+      .sort((a, b) => a.order - b.order);
+  }
 
-      .nav-link {
-        font-size: 1.1rem;
-        padding: 0.4rem 1rem;
-        border-radius: var(--ddd-borderRadius);
-        text-decoration: none;
-        cursor: pointer;
-        color: var(--ddd-theme-default-text);
-        transition: background 0.2s ease;
-      }
+  get teamItems() {
+    return this.menu
+      .filter((i) => i.parent === "team")
+      .sort((a, b) => a.order - b.order);
+  }
 
-      .nav-link:hover {
-        background: var(--ddd-accent-1-light);
-      }
-
-      /* ACTIVE TAB — “Pill” style */
-      .nav-link.active {
-        background: var(--ddd-accent-1-light);
-        border: var(--ddd-border);
-        box-shadow: var(--ddd-boxShadow);
-      }
-
-      /* DROPDOWN WRAPPER */
-      .dropdown {
-        position: relative;
-      }
-
-      /* FLOATING DROPDOWN PANEL */
-      .dropdown-menu {
-        position: absolute;
-        top: 2.6rem;
-        left: 0;
-
-        background: var(--ddd-theme-primary);
-        border: var(--ddd-border);
-        box-shadow: var(--ddd-boxShadow);
-        border-radius: var(--ddd-borderRadius);
-
-        padding: 1rem;
-        min-width: 220px;
-
-        opacity: 0;
-        transform: translateY(10px);
-        pointer-events: none;
-        visibility: hidden;
-        transition: opacity 0.25s ease, transform 0.25s ease,
-          visibility 0.25s ease;
-      }
-
-      .dropdown-menu.open {
-        opacity: 1;
-        transform: translateY(0);
-        visibility: visible;
-        pointer-events: auto;
-      }
-
-      .submenu-link {
-        font-size: 1rem;
-        display: block;
-        padding: 0.4rem 0;
-        cursor: pointer;
-        color: var(--ddd-theme-default-text);
-        text-decoration: none;
-      }
-
-      .submenu-link:hover {
-        color: var(--ddd-theme-default-text-subtle);
-      }
-
-      /* TOGGLE SWITCH (Light/Dark Mode) */
-      .toggle {
-        width: 55px;
-        height: 28px;
-
-        background: var(--ddd-accent-1-light);
-        border-radius: 30px;
-        border: var(--ddd-border);
-
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-
-        padding: 3px;
-        cursor: pointer;
-        transition: background 0.25s ease;
-      }
-
-      :host([darkmode]) .toggle {
-        background: var(--ddd-accent-1-dark);
-      }
-
-      .toggle-ball {
-        width: 22px;
-        height: 22px;
-        background: var(--ddd-accent-1-dark);
-        border-radius: 50%;
-        transition: transform 0.25s ease;
-      }
-
-      :host([darkmode]) .toggle-ball {
-        transform: translateX(27px);
-        background: var(--wendy-bg-color-light);
-      }
-
-      /* DARK MODE EFFECT */
-      :host([darkmode]) header {
-        background: var(--wendy-bg-color-dark);
-        color: var(--wendy-bg-color-light);
-      }
-
-      :host([darkmode]) .nav-link {
-        color: var(--wendy-bg-color-light);
-      }
-
-      :host([darkmode]) .dropdown-menu {
-        background: var(--wendy-bg-color-dark);
-        color: var(--wendy-bg-color-light);
-      }
-
-      /* RESPONSIVE BEHAVIOR */
-      @media (max-width: 768px) {
-        nav {
-          display: none;
-        }
-      }
-    `;
+  get contactItems() {
+    return this.menu
+      .filter((i) => i.parent === "contact")
+      .sort((a, b) => a.order - b.order);
   }
 
   handleClick(e, path) {
@@ -211,20 +69,168 @@ export class TusseyHeader extends LitElement {
       })
     );
     this.teamOpen = false;
+    this.contactOpen = false;
   }
 
   toggleTeam() {
     this.teamOpen = !this.teamOpen;
+    this.contactOpen = false;
+  }
+
+  toggleContact() {
+    this.contactOpen = !this.contactOpen;
+    this.teamOpen = false;
   }
 
   toggleMode() {
     this.darkMode = !this.darkMode;
+    this.darkMode
+      ? this.setAttribute("darkmode", "")
+      : this.removeAttribute("darkmode");
+  }
 
-    if (this.darkMode) {
-      this.setAttribute("darkmode", "");
-    } else {
-      this.removeAttribute("darkmode");
-    }
+  static get styles() {
+    return css`
+      :host {
+        display: block;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      header {
+        background: var(--ddd-theme-primary);
+        color: var(--ddd-theme-default-text);
+        padding: 0.6rem 1.2rem;
+        margin: 0.7rem auto;
+        max-width: 95%;
+        border-radius: 40px;
+        box-shadow: var(--ddd-boxShadow);
+        border: var(--ddd-border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-link {
+        font-size: 1.1rem;
+        padding: 0.4rem 1rem;
+        border-radius: var(--ddd-borderRadius);
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        background: var(--ddd-accent-1-light);
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 2.6rem;
+        left: 0;
+        background: var(--ddd-theme-primary);
+        border: var(--ddd-border);
+        box-shadow: var(--ddd-boxShadow);
+        border-radius: var(--ddd-borderRadius);
+        padding: 1rem;
+        min-width: 220px;
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+        transition: 0.25s ease;
+      }
+
+      .dropdown-menu.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .submenu-link {
+        display: block;
+        padding: 0.4rem 0;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .toggle {
+        width: 55px;
+        height: 28px;
+        background: var(--ddd-accent-1-light);
+        border-radius: 30px;
+        border: var(--ddd-border);
+        display: flex;
+        align-items: center;
+        padding: 3px;
+        cursor: pointer;
+      }
+
+      .toggle-ball {
+        width: 22px;
+        height: 22px;
+        background: var(--ddd-accent-1-dark);
+        border-radius: 50%;
+        transition: transform 0.25s ease;
+      }
+
+      :host([darkmode]) .toggle-ball {
+        transform: translateX(27px);
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          display: none;
+        }
+      }
+    `;
+  }
+  renderDropdown(item, children, open, toggleFn) {
+    return html`
+      <div class="dropdown">
+        <div
+          class="nav-link ${this.currentRoute.startsWith(item.slug)
+            ? "active"
+            : ""}"
+          @click=${(e) => {
+            e.preventDefault();
+            toggleFn.call(this);
+          }}
+        >
+          ${item.title}
+        </div>
+
+        <div class="dropdown-menu ${open ? "open" : ""}">
+          ${children.map(
+            (child) => html`
+              <a
+                class="submenu-link"
+                href=${child.slug}
+                @click=${(e) => this.handleClick(e, child.slug)}
+              >
+                ${child.title}
+              </a>
+            `
+          )}
+        </div>
+      </div>
+    `;
   }
 
   render() {
@@ -233,50 +239,35 @@ export class TusseyHeader extends LitElement {
         <div class="logo">TusseyMountain</div>
 
         <nav>
-          ${this.navItems.map((item) =>
-            item.label === "Team"
-              ? html`
-                  <div class="dropdown">
-                    <div
-                      class="nav-link ${this.currentRoute.startsWith("/team")
-                        ? "active"
-                        : ""}"
-                      @click="${this.toggleTeam}"
-                    >
-                      Team
-                    </div>
-
-                    <div class="dropdown-menu ${this.teamOpen ? "open" : ""}">
-                      ${this.teamItems.map(
-                        (team) => html`
-                          <div class="dropdown-item">
-                            <a
-                              class="submenu-link"
-                              href="${team.path}"
-                              @click="${(e) => this.handleClick(e, team.path)}"
-                            >
-                              ${team.label}
-                            </a>
-                          </div>
-                        `
-                      )}
-                    </div>
-                  </div>
-                `
+          ${this.topLevelItems.map((item) =>
+            item.metadata?.dropdown && item.id === "team"
+              ? this.renderDropdown(
+                  item,
+                  this.teamItems,
+                  this.teamOpen,
+                  this.toggleTeam
+                )
+              : item.metadata?.dropdown && item.id === "contact"
+              ? this.renderDropdown(
+                  item,
+                  this.contactItems,
+                  this.contactOpen,
+                  this.toggleContact
+                )
               : html`
                   <a
-                    href="${item.path}"
-                    class="nav-link ${this.currentRoute === item.path
+                    class="nav-link ${this.currentRoute === item.slug
                       ? "active"
                       : ""}"
-                    @click="${(e) => this.handleClick(e, item.path)}"
-                    >${item.label}</a
+                    href=${item.slug}
+                    @click=${(e) => this.handleClick(e, item.slug)}
                   >
+                    ${item.title}
+                  </a>
                 `
           )}
 
-          <!-- Light/Dark Toggle -->
-          <div class="toggle" @click="${this.toggleMode}">
+          <div class="toggle" @click=${this.toggleMode}>
             <div class="toggle-ball"></div>
           </div>
         </nav>
