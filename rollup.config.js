@@ -12,16 +12,11 @@ export default {
     chunkFileNames: "[hash].js",
     assetFileNames: "[hash][extname]",
     format: "es",
-    dir: "public",
+    dir: "dist",
   },
   preserveEntrySignatures: false,
 
   plugins: [
-    copy({
-      targets: [
-        { src: "public/menu/menu.json", dest: "public/menu" }
-      ]
-    }),
     /** Enable using HTML as rollup entrypoint */
     html({
       minify: true,
