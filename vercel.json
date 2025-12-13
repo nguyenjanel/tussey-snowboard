@@ -1,12 +1,6 @@
 {
   "rewrites": [
-    {
-      "source": "/menu/:slug*",    
-      "destination": "/menu/:slug*"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/menu.json", "destination": "/menu.json" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
