@@ -11,7 +11,7 @@ export class JobApplication extends DDDSuper(I18NMixin(LitElement)) {
     return [
       super.styles,
       css`
-        .lost-found {
+        .job-application {
           background: var(--ddd-theme-primary);
           padding: 1.5rem;
           border-radius: var(--ddd-borderRadius);
@@ -20,7 +20,7 @@ export class JobApplication extends DDDSuper(I18NMixin(LitElement)) {
           color: var(--ddd-theme-default-text);
         }
 
-        .lost-found h3 {
+        .job-application h3 {
           margin-top: 0;
           margin-bottom: 1.5rem;
           font-weight: 500;
@@ -94,8 +94,8 @@ export class JobApplication extends DDDSuper(I18NMixin(LitElement)) {
 
   render() {
     return html`
-      <main class="lost-found">
-        <h3>Lost and Found</h3>
+      <main class="job-application">
+        <h3>Job Application</h3>
         <form @submit="${this._submitForm}">
           <div class="message-input">
             <label for="first-name">First Name*</label>

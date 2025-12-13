@@ -55,6 +55,7 @@ export class TusseySnowboard extends LitElement {
       :host {
         display: block;
         min-height: 100vh;
+        background-color: var(--ddd-accent-1-light)
       }
 
       .page-wrapper {

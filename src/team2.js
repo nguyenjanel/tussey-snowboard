@@ -82,33 +82,45 @@ export class team2 extends DDDSuper(I18NMixin(LitElement)) {
 
     `;
   }
-
   firstUpdated() {
-    const gamesScheduleEl = this.renderRoot.querySelector('#games-schedule');
-    const practicesScheduleEl = this.renderRoot.querySelector('#practices-schedule');
-    const teamNameEl = this.renderRoot.querySelector('#team-name');
+    const gamesScheduleEl = this.renderRoot.querySelector("#games-schedule");
+    const practicesScheduleEl = this.renderRoot.querySelector(
+      "#practices-schedule"
+    );
+    const teamNameEl = this.renderRoot.querySelector("#team-name");
 
-    fetch('/api/schedule')
-      .then(res => res.json())
-      .then(data => {
-        const team = data[0].teams[1]; // because your API returns an array with one object
-        console.log("RAW DATA FROM API:", data);
+    fetch("/api/schedule.json")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log("RAW DATA:", data);
 
-        console.log("data[0]:", data[0]);
-        console.log("data[0].teams:", data[0].teams);
+        const league = data[0];
+        const team = league.teams.find((t) => t.id === "team-2");
+
+        if (!team) {
+          throw new Error("team-2 not found");
+        }
+
+        console.log("TEAM 2:", team);
 
         teamNameEl.textContent = team.teamName;
 
-        // Pass games schedule
-        gamesScheduleEl.scheduleData = team.schedule;      // array of game objects
-        gamesScheduleEl.scheduleType = "games";            // optional, for render logic
+        gamesScheduleEl.scheduleData = team.schedule;
+        gamesScheduleEl.scheduleType = "games";
 
-        // Pass practice schedule
-        practicesScheduleEl.scheduleData = team.practice;  // array of practice objects
-        practicesScheduleEl.scheduleType = "practice";    // optional, for render logic
+        practicesScheduleEl.scheduleData = team.practice;
+        practicesScheduleEl.scheduleType = "practice";
       })
-      .catch(err => console.error("Failed to load schedule:", err));
+      .catch((err) => {
+        console.error("Failed to load schedule:", err);
+      });
   }
+
 
   /**
    * haxProperties integration via file reference
