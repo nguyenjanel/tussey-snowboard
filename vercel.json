@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/menu.json",
-      "destination": "/menu.json"
+      "source": "/menu/:slug*",    
+      "destination": "/menu/:slug*"
     },
     {
       "source": "/(.*)",
