@@ -64,7 +64,7 @@ export class AboutBlurb extends LitElement {
     .blurb-right {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 3rem;
     }
 
     .controls {
@@ -74,6 +74,9 @@ export class AboutBlurb extends LitElement {
       margin-top: 1.5rem;
     }
 
+    tussey-button {
+      width: fit-content;
+    }
     button {
       background: none;
       border: none;

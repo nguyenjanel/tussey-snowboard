@@ -55,9 +55,6 @@ export class aboutPage extends DDDSuper(I18NMixin(LitElement)) {
           gap: 64px; /* space between blocks */
           flex-wrap: wrap; /* lets them move to next line on small screens */
         }
-        .about-blurb {
-          height: auto;
-        }
       `,
     ];
   }
@@ -65,9 +62,6 @@ export class aboutPage extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
       <div id="about-page">
-        <div class="about-blurb">
-          <about-blurb> </about-blurb>
-        </div>
         <div class="blurb">
           <h1>Mission</h1>
           <div class="mission-container">
