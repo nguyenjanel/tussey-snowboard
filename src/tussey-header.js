@@ -44,10 +44,10 @@ export class TusseyHeader extends LitElement {
       console.log("Fetch completed:", res);
       console.log("Fetch status:", res.status, res.statusText);
       console.log("Content-Type:", res.headers.get("content-type"));
-     
+
       if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
       this.menu = data.items;
     } catch (e) {
       console.error("Menu load failed", e);
@@ -97,9 +97,11 @@ export class TusseyHeader extends LitElement {
 
   toggleMode() {
     this.darkMode = !this.darkMode;
-    this.darkMode
-      ? this.setAttribute("darkmode", "")
-      : this.removeAttribute("darkmode");
+
+    document.documentElement.toggleAttribute("darkmode", this.darkMode);
+  }
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
   }
 
   static get styles() {
@@ -145,6 +147,13 @@ export class TusseyHeader extends LitElement {
         color: inherit;
       }
 
+      .nav-link,
+      .dropdown-trigger {
+        display: inline-flex;
+        align-items: bottom;
+        gap: 0.4rem;
+      }
+
       .nav-link:hover,
       .nav-link.active {
         background: var(--ddd-accent-1-light);
@@ -174,6 +183,14 @@ export class TusseyHeader extends LitElement {
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;
+      }
+
+      .menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
       }
 
       .submenu-link {
@@ -208,25 +225,91 @@ export class TusseyHeader extends LitElement {
       }
 
       @media (max-width: 768px) {
-        nav {
+        .dropdown {
+          position: relative;
+          text-align: center;
+        }
+
+        .menu-btn {
+          display: flex;
+          align-items: center;
+        }
+
+        nav.main-nav {
+          position: fixed;
+          inset: 0;
+          top: 90px;
+          background: var(--ddd-theme-primary);
+
           display: none;
+          flex-direction: column;
+          padding: 2rem 1.5rem;
+          gap: 1.2rem;
+          border-radius: var(--ddd-borderRadius);
+          box-shadow: var(--ddd-boxShadow);
+          border: var(--ddd-border);
+          margin: 0 1rem;
+
+          overflow-y: auto;
+        }
+
+        nav.main-nav.open {
+          display: flex;
+        }
+
+        .nav-link {
+          font-size: 1.3rem;
+          padding: 1rem 0;
+          border-bottom: 1px solid #999;
+          border-radius: 0;
+          justify-content: space-between;
+        }
+
+        .dropdown-menu {
+          position: static;
+          opacity: 1;
+          transform: none;
+          pointer-events: auto;
+          box-shadow: none;
+          border: none;
+          padding-left: 1rem;
+          display: none;
+        }
+
+        .dropdown-menu.open {
+          display: block;
+        }
+
+        .caret {
+          transition: transform 0.25s ease;
+        }
+
+        .dropdown-trigger.open .caret {
+          transform: rotate(180deg);
+        }
+
+        .nav-link.open {
+          background: none;
         }
       }
     `;
   }
   renderDropdown(item, children, open, toggleFn) {
     return html`
-      <div class="dropdown">
+      <div class="dropdown mobile-dropdown">
         <div
-          class="nav-link ${this.currentRoute.startsWith(item.slug)
-            ? "active"
-            : ""}"
+          class="nav-link dropdown-trigger ${open ? "open" : ""}"
           @click=${(e) => {
             e.preventDefault();
             toggleFn.call(this);
           }}
         >
-          ${item.title}
+          <span>${item.title}</span>
+          <iconify-icon
+            icon="ph:caret-down-bold"
+            width="24"
+            height="24"
+          ></iconify-icon>
         </div>
 
         <div class="dropdown-menu ${open ? "open" : ""}">
@@ -235,7 +318,10 @@ export class TusseyHeader extends LitElement {
               <a
                 class="submenu-link"
                 href=${child.slug}
-                @click=${(e) => this.handleClick(e, child.slug)}
+                @click=${(e) => {
+                  this.handleClick(e, child.slug);
+                  this.menuOpen = false;
+                }}
               >
                 ${child.title}
               </a>
@@ -251,7 +337,18 @@ export class TusseyHeader extends LitElement {
       <header>
         <div class="logo">TusseyMountain</div>
 
-        <nav>
+        <!-- Hamburg Menu -->
+        <button
+          class="menu-btn"
+          @click=${this.toggleMenu}
+          aria-label="Toggle menu"
+        >
+          ${this.menuOpen
+            ? html`<span class="close">✕</span>`
+            : html`<tussey-icon icon="mingcute:menu-fill"></tussey-icon>`}
+        </button>
+
+        <nav class="main-nav ${this.menuOpen ? "open" : ""}">
           ${this.topLevelItems.map((item) =>
             item.metadata?.dropdown && item.id === "team"
               ? this.renderDropdown(
@@ -269,11 +366,12 @@ export class TusseyHeader extends LitElement {
                 )
               : html`
                   <a
-                    class="nav-link ${this.currentRoute === item.slug
-                      ? "active"
-                      : ""}"
+                    class="nav-link"
                     href=${item.slug}
-                    @click=${(e) => this.handleClick(e, item.slug)}
+                    @click=${(e) => {
+                      this.handleClick(e, item.slug);
+                      this.menuOpen = false;
+                    }}
                   >
                     ${item.title}
                   </a>

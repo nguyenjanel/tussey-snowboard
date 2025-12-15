@@ -24,9 +24,10 @@ import "./team2.js";
 import "./team3.js";
 import "./team4.js";
 import "./contact-info.js";
-import "./message-box.js"
+import "./message-box.js";
 import "./lost-found.js";
 import "./job-application.js";
+import "./footer-tag.js";
 
 export class TusseySnowboard extends LitElement {
   static get tag() {
@@ -55,7 +56,7 @@ export class TusseySnowboard extends LitElement {
       :host {
         display: block;
         min-height: 100vh;
-        background-color: var(--ddd-accent-1-light)
+        background-color: var(--ddd-accent-1-light);
       }
 
       .page-wrapper {
@@ -108,6 +109,9 @@ export class TusseySnowboard extends LitElement {
       <tussey-header .currentRoute=${this.currentRoute}></tussey-header>
 
       <div class="page-wrapper">${this.renderRoute()}</div>
+      <div class="footer">
+        <footer-tag></footer-tag>
+      </div>
     `;
   }
 }

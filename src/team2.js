@@ -7,7 +7,6 @@ import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
 import "./team-schedule.js";
-import "./footer-tag.js";
 /**
  * `team-schedule`
  * 
@@ -73,10 +72,6 @@ export class team2 extends DDDSuper(I18NMixin(LitElement)) {
     <div>
       <h2>Upcoming Practices</h2>
       <team-schedule id="practices-schedule"></team-schedule>
-    </div>
-  
-    <div class="footer">
-      <footer-tag></footer-tag>
     </div>
   </div>
 
