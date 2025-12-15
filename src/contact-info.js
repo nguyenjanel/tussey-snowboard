@@ -101,7 +101,7 @@ export class ContactInfo extends DDDSuper(I18NMixin(LitElement)) {
           tussey-icon {
             display: none;
           }
-          h2{
+          h2 {
             font-size: 1.4rem;
           }
         }
