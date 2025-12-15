@@ -60,6 +60,7 @@ export class tusseyHero extends DDDSuper(I18NMixin(LitElement)) {
         font-weight: bold;
         text-align: center;
         white-space: nowrap;
+        color: var(--ddd-theme-text);
       }
     `];
   }

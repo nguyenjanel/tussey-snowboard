@@ -77,7 +77,7 @@ export class homeSlopeType extends DDDSuper(I18NMixin(LitElement)) {
       justify-content: center;
       align-items: center;
       background-color: var( --ddd-accent-1-light);
-      color: #333;
+      color: var(--ddd-accent-1-ligh);
       opacity: 0;
       padding-left: 10px;
     }

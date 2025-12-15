@@ -195,7 +195,7 @@ export class footerTag extends DDDSuper(I18NMixin(LitElement)) {
             <p class="clickable" @click="${() => this._navigate("/team1")}">
               Teams
             </p>
-            <p class="clickable" @click="${() => this._navigate("/contact")}">
+            <p class="clickable" @click="${() => this._navigate("/contact-info")}">
               Contact
             </p>
           </div>

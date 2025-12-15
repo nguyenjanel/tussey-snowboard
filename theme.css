@@ -6,6 +6,7 @@
 
   --wendy-primary-color: #add9e5;
   --janel-secondary-color:  #add9e580;
+  --janel-dark-mode-color: #add9e5;
 
   --wendy-border-radius: 5px;
   --wendy-border-style: 2px solid var(--wendy-bg-color-dark);
@@ -13,6 +14,7 @@
 
   --ddd-theme-primary: var(--wendy-primary-color);
   --ddd-theme-secondary: var(--janel-secondary-color);
+  --ddd-theme-text: var(--janel-dark-mode-color);
   --ddd-theme-default-text: var(--wendy-font-color);
   --ddd-theme-default-text-subtle: var(--wendy-font-color-sub);
 
@@ -27,6 +29,8 @@
 :root[darkmode] {
   --wendy-font-color: #e8e8e8;
   --wendy-font-color-sub: #b5b5b5;
+
+  --janel-dark-mode-color: #e8e8e8;
 
   --wendy-bg-color-light: #1a1a1a;
   --wendy-bg-color-dark: #f5f4dc;

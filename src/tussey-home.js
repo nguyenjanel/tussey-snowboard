@@ -94,9 +94,6 @@ export class tusseyHome extends DDDSuper(I18NMixin(LitElement)) {
           >
           </home-slope-type>
         </div>
-        <div class="placer">
-          <p>SOCIAL MEDIA</p>
-        </div>
       </div>
     `;
   }
