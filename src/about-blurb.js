@@ -94,7 +94,7 @@ export class AboutBlurb extends LitElement {
   `;
 
   render() {
-    const item = this.items[this.index];s
+    const item = this.items[this.index];
 
     return html`
       <section class="carousel">
