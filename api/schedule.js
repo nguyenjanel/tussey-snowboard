@@ -1,0 +1,189 @@
+export default function handler(req, res) {
+  const team = [
+    {
+      id: "tussey-snowboarding-league",
+      title: "Tussey Mountain Snowboarding League",
+      description:
+        "A schedule and roster for four snowboarding teams at Tussey Mountain.",
+      teams: [
+        {
+          id: "team-1",
+          teamName: "Avalanche Riders",
+          coach: "Coach Miller",
+          schedule: [
+            {
+              date: "2025-01-10",
+              time: "10:00 AM",
+              endTime: "11:30 AM",
+              location: "Tussey Mt Main Slope",
+              opponent: "Frostbite Flyers",
+            },
+            {
+              date: "2025-01-17",
+              time: "1:00 PM",
+              endTime: "2:30 PM",
+              location: "Tussey Mt Back Bowl",
+              opponent: "Snow Serpents",
+            },
+            {
+              date: "2025-01-24",
+              time: "9:30 AM",
+              endTime: "11:00 AM",
+              location: "Tussey Mt Upper Ridge",
+              opponent: "Ice Breakers",
+            },
+          ],
+          practice: [
+            {
+              date: "2025-01-12",
+              time: "10:00 AM",
+              endTime: "11:30 AM",
+              location: "Tussey Mt Beginner Slope",
+              notes: "Carving drills and edge control",
+            },
+            {
+              date: "2025-01-19",
+              time: "1:00 PM",
+              endTime: "2:30 PM",
+              location: "Tussey Mt Back Bowl",
+              notes: "Jump techniques and speed training",
+            },
+          ],
+        },
+        {
+          id: "team-2",
+          teamName: "Frostbite Flyers",
+          coach: "Coach Ramirez",
+          schedule: [
+            {
+              date: "2025-01-10",
+              time: "10:00 AM",
+              endTime: "11:30 AM",
+              location: "Tussey Mt Main Slope",
+              opponent: "Avalanche Riders",
+            },
+            {
+              date: "2025-01-18",
+              time: "2:00 PM",
+              endTime: "3:30 PM",
+              location: "Tussey Mt Side Trail",
+              opponent: "Ice Breakers",
+            },
+            {
+              date: "2025-01-25",
+              time: "11:00 AM",
+              endTime: "12:30 PM",
+              location: "Tussey Mt Back Bowl",
+              opponent: "Snow Serpents",
+            },
+          ],
+          practice: [
+            {
+              date: "2025-01-13",
+              time: "9:00 AM",
+              endTime: "10:30 AM",
+              location: "Tussey Mt Upper Ridge",
+              notes: "Balance and turns practice",
+            },
+            {
+              date: "2025-01-20",
+              time: "2:00 PM",
+              endTime: "3:30 PM",
+              location: "Tussey Mt Main Slope",
+              notes: "Speed control and carving drills",
+            },
+          ],
+        },
+        {
+          id: "team-3",
+          teamName: "Snow Serpents",
+          coach: "Coach Kim",
+          schedule: [
+            {
+              date: "2025-01-17",
+              time: "1:00 PM",
+              endTime: "2:30 PM",
+              location: "Tussey Mt Back Bowl",
+              opponent: "Avalanche Riders",
+            },
+            {
+              date: "2025-01-19",
+              time: "12:00 PM",
+              endTime: "1:30 PM",
+              location: "Tussey Mt Upper Ridge",
+              opponent: "Frostbite Flyers",
+            },
+            {
+              date: "2025-01-25",
+              time: "11:00 AM",
+              endTime: "12:30 PM",
+              location: "Tussey Mt Back Bowl",
+              opponent: "Ice Breakers",
+            },
+          ],
+          practice: [
+            {
+              date: "2025-01-14",
+              time: "11:00 AM",
+              endTime: "12:30 PM",
+              location: "Tussey Mt Side Trail",
+              notes: "Jump practice and tricks",
+            },
+            {
+              date: "2025-01-21",
+              time: "12:00 PM",
+              endTime: "1:30 PM",
+              location: "Tussey Mt Back Bowl",
+              notes: "Speed runs and carving drills",
+            },
+          ],
+        },
+        {
+          id: "team-4",
+          teamName: "Ice Breakers",
+          coach: "Coach Patel",
+          schedule: [
+            {
+              date: "2025-01-24",
+              time: "9:30 AM",
+              endTime: "11:00 AM",
+              location: "Tussey Mt Upper Ridge",
+              opponent: "Avalanche Riders",
+            },
+            {
+              date: "2025-01-18",
+              time: "2:00 PM",
+              endTime: "3:30 PM",
+              location: "Tussey Mt Side Trail",
+              opponent: "Frostbite Flyers",
+            },
+            {
+              date: "2025-01-25",
+              time: "11:00 AM",
+              endTime: "12:30 PM",
+              location: "Tussey Mt Back Bowl",
+              opponent: "Snow Serpents",
+            },
+          ],
+          practice: [
+            {
+              date: "2025-01-15",
+              time: "10:00 AM",
+              endTime: "11:30 AM",
+              location: "Tussey Mt Beginner Slope",
+              notes: "Carving drills and balance practice",
+            },
+            {
+              date: "2025-01-22",
+              time: "1:00 PM",
+              endTime: "2:30 PM",
+              location: "Tussey Mt Upper Ridge",
+              notes: "Jumping and trick practice",
+            },
+          ],
+        },
+      ],
+    },
+  ];
+  res.status(200).json(team);
+}
