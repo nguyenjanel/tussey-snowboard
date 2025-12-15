@@ -220,7 +220,7 @@ export class TusseyHeader extends LitElement {
         transition: transform 0.25s ease;
       }
 
-      :host([darkmode]) .toggle-ball {
+      :host-context(html[darkmode]) .toggle-ball {
         transform: translateX(27px);
       }
 

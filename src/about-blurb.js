@@ -93,6 +93,9 @@ export class AboutBlurb extends LitElement {
         padding: 1rem 0;
         text-align: center;
       }
+      tussey-button {
+        margin: 0 auto;
+      }
     }
   `;
 
