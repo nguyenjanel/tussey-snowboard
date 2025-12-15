@@ -4,6 +4,9 @@
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
+import "./tussey-textarea.js";
+import "./tussey-input.js";
+import "./tussey-button.js";
 
 export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
   static get tag() {
@@ -36,12 +39,9 @@ export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
           grid-template-columns: 1fr 1fr;
         }
 
-        @media (max-width: 1024px) {
-          .message-box {
-            width: 80%;
-            margin: 0 auto;
-            padding: 2rem;
-          }
+        tussey-textarea,
+        tussey-button {
+          grid-column: 1 / -1;
         }
 
         @media (max-width: 768px) {
@@ -51,46 +51,7 @@ export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
           }
         }
 
-        /* label{
-          color: var(--ddd-theme-default-text-subtle);
-        } */
 
-        .message-input {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-
-        .form-field {
-          padding: 0.8rem 1rem;
-          border: var(--ddd-border);
-          border-radius: var(--ddd-borderRadius);
-          box-shadow: var(--ddd-boxShadow);
-          background-color: var(--ddd-accent-1-light);
-          font-size: 1rem;
-        }
-
-        .message-area {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-          grid-column: span 2;
-        }
-
-        button {
-          border-radius: 12px;
-          border: none;
-          padding: 0.8rem;
-          background: var(--ddd-accent-1-dark);
-          color: var(--ddd-theme-default-text);
-          cursor: pointer;
-          font-weight: 600;
-          grid-column: span 2;
-        }
-
-        button:hover {
-          opacity: 0.85;
-        }
       `,
     ];
   }
@@ -99,63 +60,40 @@ export class MessageBox extends DDDSuper(I18NMixin(LitElement)) {
     return html`
       <main class="message-box">
         <h3>Get in touch with Tussey Mountain.</h3>
-        <form @submit="${this._submitForm}">
-          <div class="message-input">
-            <label for="first-name">First Name*</label>
-            <input
-              class="form-field"
-              type="text"
-              id="first-name"
-              name="first-name"
-              required
-            />
-          </div>
+        <form @submit=${this._submitForm}>
+          <tussey-input
+            label="First Name"
+            name="first-name"
+            required
+          ></tussey-input>
 
-          <div class="message-input">
-            <label for="last-name">Last Name*</label>
-            <input
-              class="form-field"
-              type="text"
-              id="last-name"
-              name="last-name"
-              required
-            />
-          </div>
+          <tussey-input
+            label="Last Name"
+            name="last-name"
+            required
+          ></tussey-input>
 
-          <div class="message-input">
-            <label for="phone">Phone*</label>
-            <input
-              class="form-field"
-              type="tel"
-              id="phone"
-              name="phone"
-              required
-            />
-          </div>
+          <tussey-input
+            label="Phone"
+            name="phone"
+            type="tel"
+            required
+          ></tussey-input>
 
-          <div class="message-input">
-            <label for="email">Address*</label>
-            <input
-              class="form-field"
-              type="email"
-              id="email"
-              name="email"
-              required
-            />
-          </div>
+          <tussey-input
+            label="Email"
+            name="email"
+            type="email"
+            required
+          ></tussey-input>
 
-          <div class="message-area">
-            <label for="message">Message</label>
-            <textarea
-              class="form-field"
-              id="message"
-              name="message"
-              rows="5"
-              cols="36"
-            ></textarea>
-          </div>
+          <tussey-textarea
+            label="Message"
+            name="message"
+            rows="5"
+          ></tussey-textarea>
 
-          <button class="form-field" type="submit">Send</button>
+          <tussey-button label="Send" href="get-in-touch"></tussey-button>
         </form>
       </main>
     `;
