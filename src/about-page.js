@@ -8,8 +8,6 @@ import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
 import "./about-mission-statement.js"
 import "./about-profile.js";
-import "./footer-tag.js";
-
 /**
  * `about-page`
  * 
@@ -124,9 +122,6 @@ export class aboutPage extends DDDSuper(I18NMixin(LitElement)) {
               photo="https://static.vecteezy.com/system/resources/thumbnails/000/242/794/small/girl-with-wavy-hair-and-glasses.jpg">
             </about-profile>
           </div>
-        </div>
-        <div class="footer">
-          <footer-tag></footer-tag>
         </div>
       </div>
     `;

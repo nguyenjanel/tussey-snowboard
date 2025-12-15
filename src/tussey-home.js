@@ -8,7 +8,6 @@ import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
 import "./home-slope-type.js";
 import "./tussey-hero.js";
-import "./footer-tag.js"
 
 /**
  * `tussey-home`
@@ -98,7 +97,6 @@ export class tusseyHome extends DDDSuper(I18NMixin(LitElement)) {
         <div class="placer">
           <p>SOCIAL MEDIA</p>
         </div>
-        <footer-tag></footer-tag>
       </div>
       `;
   }
