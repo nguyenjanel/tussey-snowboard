@@ -1,3 +1,77 @@
+# 🏂 Tussey Mountain Snowboarding League Website
+
+The **Tussey Mountain Snowboarding League** website is a single-page web application (SPA) built using **Lit Web Components**. The site presents teams, schedules, and league information for a fictional competitive snowboarding league at Tussey Mountain.
+
+This project focuses on **component-based architecture**, **client-side routing**, and **JSON-driven data**, following modern frontend development practices.
+
+---
+
+## Project Overview
+
+- Single-Page Application (SPA)
+- Built entirely with Lit Web Components
+- Client-side routing using the History API
+- Navigation and schedules powered by JSON
+- Fully componentized and reusable UI
+- Deployed using Vercel
+
+---
+
+## Client-Side Routing
+
+Routing is handled on the client using the browser History API (`pushState`, `popstate`) without page reloads.
+
+### Supported Routes
+- `/` — Home
+- `/about` — About the League
+- `/team1`, `/team2`, `/team3`, `/team4` — Team Pages
+- `/contact-info`
+- `/get-in-touch`
+- `/lost-found`
+- `/job-application`
+
+Each route dynamically loads the appropriate web component.
+
+---
+
+## Web Components (10+)
+
+The application is composed of modular and reusable **Lit Web Components**
+
+Each component:
+- Is self-contained
+- Uses scoped styles
+- Reacts to data via Lit properties
+- Can be reused across pages
+
+---
+
+## 📁 JSON-Driven Content
+
+### Navigation (`menu.json`)
+- Navigation structure stored in JSON
+- Dynamically loaded at runtime
+- Supports dropdown menus (Teams, Contact)
+
+### Schedule Data (`schedule.json`)
+- League → Teams → Games & Practices
+- Loaded using `fetch()`
+- Passed to child components as properties
+
+This separates **content from presentation**, making the site easy to update and maintain.
+
+---
+
+## Tech Stack
+
+- Lit (Web Components)
+- JavaScript (ES Modules)
+- Rollup (Build Tool)
+- JSON (Navigation & Schedule Data)
+- HTML / CSS
+- Vercel (Deployment)
+
+
 # tussey-snowboard
 DDD + Lit web component based on OpenWC toolchain. This is intended to provide the following:
 - Look good via DDD, HAX design system
